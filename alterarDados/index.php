@@ -1,115 +1,168 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>IPECON - Ensino e Consultoria</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="regisandrade@gmail.com">
+<?php
+//== Selecionar Cursos
+$comando = "SELECT * FROM curso WHERE Codg_Curso = ".$_SESSION['curso'];
+$result = mysql_query($comando) or die('Erro na consulta dos Cursos. '.mysql_error());
+$num = mysql_num_rows($result);
 
-    <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+// Consulta de dados do aluno
+$cmd_aluno = "
+SELECT
+      ALU.Id_Numero,
+      ALU.Nome,
+      DATE_FORMAT(ALU.Data_Nascimento, '%d/%m/%y') AS Data_Nascimento,
+      ALU.Naturalidade,
+      ALU.UF_Naturalidade,
+      ALU.Nacionalidade,
+      ALU.Sexo,
+      ALU.RG,
+      ALU.Orgao,
+      ALU.CPF,
+      ALU.e_Mail,
+      ENDE.Endereco,
+      ENDE.Bairro,
+      ENDE.CEP,
+      ENDE.Cidade,
+      ENDE.UF,
+      ENDE.Fone_Residencial,
+      ENDE.Fone_Comercial,
+      ENDE.Celular AS Fone_Celular,
+      GRA.Curso_Graduacao,
+      GRA.Instituicao,
+      GRA.Sigla,
+      GRA.Ano_Conclusao
+FROM
+    aluno ALU
+INNER JOIN endereco ENDE ON
+      ENDE.Id_Numero = ALU.Id_Numero
+INNER JOIN graduacao GRA ON
+      GRA.Id_Numero = ALU.Id_Numero
+WHERE
+     ALU.Id_Numero = '".$_SESSION['id_numero']."'";
+$res_aluno = mysql_query($cmd_aluno) or die('Erro na consulta dos dados do Aluno. '.mysql_error());
+$reg_aluno = mysql_fetch_array($res_aluno);
+?>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<h2>Atualizar dados cadastrais</h2>
 
-    <!-- Fav and touch icons -->
-    <!-- <link rel="shortcut icon" href="bootstrap/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">-->
-  </head>
+<p>Atenção: se os seus dados estiveren incompletos, favor completar.</p>
 
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Área do aluno</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eduacional <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="cronograma/index.php">Cronograma</a></li>
-                  <li><a href="#">Notas/Frequenências</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Declarações <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Currículo</a></li>
-                  <li><a href="#">Estudante</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bco Oportunidade <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Vagas</a></li>
-                  <li><a href="#">Currículo</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outros <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Avisos</a></li>
-                  <li><a href="#">Depoimentos</a></li>
-                  <li><a href="#">Alterar dados</a></li>
-                  <!-- <li class="divider"></li> -->
-                </ul>
-              </li>
-              <li><a href="#contact">Alterar senha</a></li>
-              <li><a href="#contact">Sair</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-
-      <h2>Atualizar dados cadastrados</h2>
-
-      <hr>
-
-      <footer>
-        <p>&copy; IPECON 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap-transition.js"></script>
-    <script src="bootstrap/js/bootstrap-alert.js"></script>
-    <script src="bootstrap/js/bootstrap-modal.js"></script>
-    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="bootstrap/js/bootstrap-tab.js"></script>
-    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="bootstrap/js/bootstrap-popover.js"></script>
-    <script src="bootstrap/js/bootstrap-button.js"></script>
-    <script src="bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
-
-  </body>
-</html>
+<form name="form_aluno" action="alterar_cadastro/cadastro_alterado.php" method="post" onSubmit="return validarAluno()">
+  <input type="hidden" name="codg_aluno" value="<?php echo $reg_aluno['Id_Numero']; ?>">
+  <label>Curso:</label>
+  <?php
+  if($num < 1){
+    echo 'Nenhum curso cadastrado.';
+  }else{
+    while($registro = mysql_fetch_array($result)){
+    ?>
+      <input type="radio" name="codg_curso" value="<?php echo $registro['Codg_Curso']; ?>" checked><?php echo $registro['Nome']; ?>
+      <input type="hidden" name="nome_curso" value="<?php echo $registro['Nome']; ?>">
+    <?php
+    }
+  }
+  ?>
+  
+  <label>Nome:</label><input name="nome" type="text" id="nome" value="<?php echo $reg_aluno['Nome']; ?>">
+  
+  <label>Data Nascimento:<input name="data_nascimento" type="text" id="data_nascimento" value="<?php echo $reg_aluno['Data_Nascimento']; ?>">&nbsp;sem "/"
+    
+  <label>Naturalidade:</label><input name="naturalidade" type="text" id="naturalidade" value="<?php echo $reg_aluno['Naturalidade']; ?>">
+  
+  <label>Estado:</label>
+  <select name="uf_1">
+    <option value="" selected>UF
+    <option value="AC" <?php if($reg_aluno['UF_Naturalidade'] == 'AC'){ echo 'selected'); }?>>AC
+    <option value="AL" <?php if($reg_aluno['UF_Naturalidade'] == 'AL'){ echo 'selected'); }?>>AL
+    <option value="AM" <?php if($reg_aluno['UF_Naturalidade'] == 'AM'){ echo 'selected'); }?>>AM
+    <option value="BA" <?php if($reg_aluno['UF_Naturalidade'] == 'BA'){ echo 'selected'); }?>>BA
+    <option value="CE" <?php if($reg_aluno['UF_Naturalidade'] == 'CE'){ echo 'selected'); }?>>CE
+    <option value="DF" <?php if($reg_aluno['UF_Naturalidade'] == 'DF'){ echo 'selected'); }?>>DF
+    <option value="ES" <?php if($reg_aluno['UF_Naturalidade'] == 'ES'){ echo 'selected'); }?>>ES
+    <option value="GO" <?php if($reg_aluno['UF_Naturalidade'] == 'GO'){ echo 'selected'); }?>>GO
+    <option value="MA" <?php if($reg_aluno['UF_Naturalidade'] == 'MA'){ echo 'selected'); }?>>MA
+    <option value="MG" <?php if($reg_aluno['UF_Naturalidade'] == 'MG'){ echo 'selected'); }?>>MG
+    <option value="MS" <?php if($reg_aluno['UF_Naturalidade'] == 'MS'){ echo 'selected'); }?>>MS
+    <option value="MT" <?php if($reg_aluno['UF_Naturalidade'] == 'MT'){ echo 'selected'); }?>>MT
+    <option value="PA" <?php if($reg_aluno['UF_Naturalidade'] == 'PA'){ echo 'selected'); }?>>PA
+    <option value="PB" <?php if($reg_aluno['UF_Naturalidade'] == 'PB'){ echo 'selected'); }?>>PB
+    <option value="PE" <?php if($reg_aluno['UF_Naturalidade'] == 'PE'){ echo 'selected'); }?>>PE
+    <option value="PI" <?php if($reg_aluno['UF_Naturalidade'] == 'PI'){ echo 'selected'); }?>>PI
+    <option value="PR" <?php if($reg_aluno['UF_Naturalidade'] == 'PR'){ echo 'selected'); }?>>PR
+    <option value="RJ" <?php if($reg_aluno['UF_Naturalidade'] == 'RJ'){ echo 'selected'); }?>>RJ
+    <option value="RN" <?php if($reg_aluno['UF_Naturalidade'] == 'RN'){ echo 'selected'); }?>>RN
+    <option value="RO" <?php if($reg_aluno['UF_Naturalidade'] == 'RO'){ echo 'selected'); }?>>RO
+    <option value="RR" <?php if($reg_aluno['UF_Naturalidade'] == 'RR'){ echo 'selected'); }?>>RR
+    <option value="RS" <?php if($reg_aluno['UF_Naturalidade'] == 'RS'){ echo 'selected'); }?>>RS
+    <option value="SC" <?php if($reg_aluno['UF_Naturalidade'] == 'SC'){ echo 'selected'); }?>>SC
+    <option value="SP" <?php if($reg_aluno['UF_Naturalidade'] == 'SP'){ echo 'selected'); }?>>SP
+    <option value="TO" <?php if($reg_aluno['UF_Naturalidade'] == 'TO'){ echo 'selected'); }?>>TO
+  </select>
+  
+  <label>Nacionalidade:</label><input name="nacionalidade" type="text" value="<?php echo $reg_aluno['Nacionalidade']; ?>">
+  
+  <td align="right" valign="middle">Sexo:</label><input name="sexo" type="radio" value="M" <?php if($reg_aluno['Sexo'] == 'M'){ echo 'checked'); }?>>M
+    <input type="radio" name="sexo" value="F" <?php if($reg_aluno['Sexo'] == 'F'){ echo 'checked'); }?>>F
+  
+  <label>Identidade (RG):</label><input name="rg" type="text" id="rg" value="<?php echo $reg_aluno['RG']; ?>">
+  
+  <label>Orgão Exp.:</label><input name="orgao" type="text" id="orgao" value="<?php echo $reg_aluno['Orgao']; ?>">
+  
+  <label>C.P.F. N&ordm;:</label><input name="cpf" type="text" id="cpf" value="<?php echo $reg_aluno['CPF']; ?>" readonly="true">
+  
+  <label>Endere&ccedil;o:</label><input name="endereco" type="text" id="endereco" value="<?php echo $reg_aluno['Endereco']; ?>">
+  
+  <label>Bairro:</label><input name="bairro" type="text" id="bairro" value="<?php echo $reg_aluno['Bairro']; ?>">
+  
+  <label>CEP:</label><input name="cep" type="text" id="cep" value="<?php echo $reg_aluno['CEP']; ?>">
+  
+  <label>Cidade:</label><input name="cidade" type="text" id="cidade" value="<?php echo $reg_aluno['Cidade']; ?>">
+  
+  <label>Estado:</label>
+  <select name="uf_2">
+    <option value="" selected>UF
+    <option value="AC" <?php if($reg_aluno['UF'] == 'AC'){ echo 'selected'); }?>>AC
+    <option value="AL" <?php if($reg_aluno['UF'] == 'AL'){ echo 'selected'); }?>>AL
+    <option value="AM" <?php if($reg_aluno['UF'] == 'AM'){ echo 'selected'); }?>>AM
+    <option value="BA" <?php if($reg_aluno['UF'] == 'BA'){ echo 'selected'); }?>>BA
+    <option value="CE" <?php if($reg_aluno['UF'] == 'CE'){ echo 'selected'); }?>>CE
+    <option value="DF" <?php if($reg_aluno['UF'] == 'DF'){ echo 'selected'); }?>>DF
+    <option value="ES" <?php if($reg_aluno['UF'] == 'ES'){ echo 'selected'); }?>>ES
+    <option value="GO" <?php if($reg_aluno['UF'] == 'GO'){ echo 'selected'); }?>>GO
+    <option value="MA" <?php if($reg_aluno['UF'] == 'MA'){ echo 'selected'); }?>>MA
+    <option value="MG" <?php if($reg_aluno['UF'] == 'MG'){ echo 'selected'); }?>>MG
+    <option value="MS" <?php if($reg_aluno['UF'] == 'MS'){ echo 'selected'); }?>>MS
+    <option value="MT" <?php if($reg_aluno['UF'] == 'MT'){ echo 'selected'); }?>>MT
+    <option value="PA" <?php if($reg_aluno['UF'] == 'PA'){ echo 'selected'); }?>>PA
+    <option value="PB" <?php if($reg_aluno['UF'] == 'PB'){ echo 'selected'); }?>>PB
+    <option value="PE" <?php if($reg_aluno['UF'] == 'PE'){ echo 'selected'); }?>>PE
+    <option value="PI" <?php if($reg_aluno['UF'] == 'PI'){ echo 'selected'); }?>>PI
+    <option value="PR" <?php if($reg_aluno['UF'] == 'PR'){ echo 'selected'); }?>>PR
+    <option value="RJ" <?php if($reg_aluno['UF'] == 'RJ'){ echo 'selected'); }?>>RJ
+    <option value="RN" <?php if($reg_aluno['UF'] == 'RN'){ echo 'selected'); }?>>RN
+    <option value="RO" <?php if($reg_aluno['UF'] == 'RO'){ echo 'selected'); }?>>RO
+    <option value="RR" <?php if($reg_aluno['UF'] == 'RR'){ echo 'selected'); }?>>RR
+    <option value="RS" <?php if($reg_aluno['UF'] == 'RS'){ echo 'selected'); }?>>RS
+    <option value="SC" <?php if($reg_aluno['UF'] == 'SC'){ echo 'selected'); }?>>SC
+    <option value="SP" <?php if($reg_aluno['UF'] == 'SP'){ echo 'selected'); }?>>SP
+    <option value="TO" <?php if($reg_aluno['UF'] == 'TO'){ echo 'selected'); }?>>TO
+  </select> 
+  
+  <label>Fone Resid&ecirc;ncial:</label><input name="fone_residencial" type="text" id="fone_residencial" value="<?php echo $reg_aluno['Fone_Residencial']; ?>">
+  
+  <label>Fone Comercial:</label><input name="fone_comercial" type="text" id="fone_comercial" value="<?php echo $reg_aluno['Fone_Comercial']; ?>">
+  
+  <label>Celular:</label><input name="celular" type="text" value="<?php echo $reg_aluno['Fone_Celular']; ?>">
+  
+  <label>e-Mail:</label><input name="email" type="text" id="email" value="<?php echo $reg_aluno['e_Mail']; ?>">
+  
+  <label>Curso Gradua&ccedil;&atilde;o:</label><input name="graduacao" type="text" id="curso" value="<?php echo $reg_aluno['Curso_Graduacao']; ?>">
+  
+  <label>Institui&ccedil;&atilde;o:</label><input name="instituicao" type="text" id="instituicao" value="<?php echo $reg_aluno['Instituicao']; ?>">
+  
+  <label>Sigla:</label><input name="sigla" type="text" id="sigla2" value="<?php echo $reg_aluno['Sigla']; ?>">
+  
+  <label>Ano Conclus&atilde;o:</label><input name="conclusao" type="text" id="conclusao" value="<?php echo $reg_aluno['Ano_Conclusao']; ?>">
+  
+  <button class="btn btn-large btn-primary" type="submit">Alterar dados</button>
+    
+</form>
