@@ -1,7 +1,7 @@
 <?php
 /**
 *
-*  CONSULTA DE CRONOGRAMAS
+*  CONSULTA DE NOTAS/FREQUENCIAS
 *  @autor Regis Andrade
 *
 */
@@ -9,11 +9,11 @@
 require_once "../../lib/myDB.class.php";
 $bd = new myDB();
 
-require_once "../class/cronograma.class.php";
-$cronogramaDAO = new Cronograma();
-$listaCronogramas = $cronogramaDAO->pesquisar($bd);
+require_once "../class/notasFrequencias.class.php";
+$notasFrequenciasDAO = new NotasFrequencias();
+$listaNotasFrequencias = $notasFrequenciasDAO->pesquisar($bd);
 ?>
-<h2>Cronograma</h2>
+<h2>Notas/Frequências</h2>
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
@@ -28,12 +28,12 @@ $listaCronogramas = $cronogramaDAO->pesquisar($bd);
   </thead>
 
   <tbody>
-    <?php if(!is_array($listaCronogramas)){ ?>
+    <?php if(!is_array($listaNotasFrequencias)){ ?>
     <tr>
       <td colspan="7"><p class="text-error">Nenhum registro encontrado.</p></td>
     </tr>
     <?php }else{ 
-      foreach ($listaCronogramas as $value) {
+      foreach ($listaNotasFrequencias as $value) {
     ?>
     <tr>
       <td><?php echo ($conta + 1); ?>.&nbsp;<?php echo $value['Disciplina']; ?></td>

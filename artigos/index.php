@@ -1,53 +1,41 @@
 <?php
-//== Consultar Artigos
-$comando = "
-SELECT
-  Codg_Artigo,
-  Descricao,
-  Artigo,
-  DATE_FORMAT(Data,'%d/%m/%Y') AS Data
-FROM
-  artigo
-WHERE
-  Todos = 1
-ORDER BY
-  Artigo
-";
-$result = mysql_query($comando) or die ("<font face='Verdana' size='2'>Erro na Consulta dos Artigos. <br><b>Comando:</b> <font color='#FF0000'>".$comando."</font><br><b>Erro:</b> ".mysql_error());
-$num = mysql_num_rows($result);
+/**
+*
+*  CONSULTA DE ARTIGOS
+*  @autor Regis Andrade
+*
+*/
+
+require_once "../../lib/myDB.class.php";
+$bd = new myDB();
+
+require_once "../class/artigo.class.php";
+$artigoDAO = new Artigo();
+$listaArtigos = $artigoDAO->pesquisar($bd);
 ?>
 <h2>Artigos</h2>
-<table border="0" align="center" cellpadding="0" cellspacing="2" style="border: solid 1px #CCCCCC">
-  <tr bgcolor="#DDDDDD">
-    <td width="80%" ><strong>Artigos</strong></td>
-    <td width="20%" ><strong>Data</strong></td>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Data</th>
     </tr>
-  <?php
-    if($num < 1){
-    ?>
-  <tr>
-    <td  colspan="2" align="center"><p>Nenhum registro encontrado.</p></td>
-  </tr>
-  <?php
-    }else{
-      $conta = 0;
-    $numero = 1;
-    while($registro = mysql_fetch_array($result)){
-      if($conta % 2 == 1){
-        $cor = '#DDEEFF';
-      }else{
-        $cor = '#FFFFFF';
-      }
-  ?>
-  <tr bgcolor="<?php print($cor); ?>">
-    <td ><a href="../artigos/<?php print($registro['Artigo']); ?>" target="_blank"><?php print($registro['Descricao']); ?></a></td>
-    <td ><?php print($registro['Data']); ?></td>
+  </thead>
+
+  <tbody>
+    <?php if(!is_array($listaArtigos)){ ?>
+    <tr>
+      <td colspan="2"><p class="text-error">Nenhum registro encontrado.</p></td>
     </tr>
-  <?php
-    $conta++;
-    $numero++;
-      }
-    }
+    <?php }else{ 
+      foreach ($listaArtigos as $value) {
     ?>
+    <tr>
+      <td><a href="../artigos/<?php echo $value['Artigo']; ?>" target="_blank"><?php echo $value['Descricao']; ?></a></td>
+      <td><?php echo $value['Data']; ?></td>
+    </tr>
+    <?php }
+    } 
+    ?>
+  </tbody>
 </table>
-<p>&nbsp;</p>
