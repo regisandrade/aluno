@@ -1,47 +1,26 @@
 <?php
-//== Selecionar Cursos
-$comando = "SELECT * FROM curso WHERE Codg_Curso = ".$_SESSION['curso'];
-$result = mysql_query($comando) or die('Erro na consulta dos Cursos. '.mysql_error());
-$num = mysql_num_rows($result);
+/**
+*
+*  ALTERAR DADOS DO ALUNO
+*  @autor Regis Andrade
+*
+*/
 
-// Consulta de dados do aluno
-$cmd_aluno = "
-SELECT
-      ALU.Id_Numero,
-      ALU.Nome,
-      DATE_FORMAT(ALU.Data_Nascimento, '%d/%m/%y') AS Data_Nascimento,
-      ALU.Naturalidade,
-      ALU.UF_Naturalidade,
-      ALU.Nacionalidade,
-      ALU.Sexo,
-      ALU.RG,
-      ALU.Orgao,
-      ALU.CPF,
-      ALU.e_Mail,
-      ENDE.Endereco,
-      ENDE.Bairro,
-      ENDE.CEP,
-      ENDE.Cidade,
-      ENDE.UF,
-      ENDE.Fone_Residencial,
-      ENDE.Fone_Comercial,
-      ENDE.Celular AS Fone_Celular,
-      GRA.Curso_Graduacao,
-      GRA.Instituicao,
-      GRA.Sigla,
-      GRA.Ano_Conclusao
-FROM
-    aluno ALU
-INNER JOIN endereco ENDE ON
-      ENDE.Id_Numero = ALU.Id_Numero
-INNER JOIN graduacao GRA ON
-      GRA.Id_Numero = ALU.Id_Numero
-WHERE
-     ALU.Id_Numero = '".$_SESSION['id_numero']."'";
-$res_aluno = mysql_query($cmd_aluno) or die('Erro na consulta dos dados do Aluno. '.mysql_error());
-$reg_aluno = mysql_fetch_array($res_aluno);
+require_once "../../lib/myDB.class.php";
+$bd = new myDB();
+
+require_once "../class/curso.class.php";
+$cursoDAO = new Curso();
+$parametros['curso'] = $_SESSION['curso'];
+$listaCursos = $cursoDAO->pesquisar($bd,$parametros);
+unset($parametros);
+
+require_once "../class/aluno.class.php";
+$alunoDAO = new Aluno();
+$parametros['curso'] = $_SESSION['id_numero'];
+$listaAlunos = $alunoDAO->pesquisar($bd,$parametros);
+unset($parametros);
 ?>
-
 <h2>Atualizar dados cadastrais</h2>
 
 <p>Atenção: se os seus dados estiveren incompletos, favor completar.</p>
@@ -50,13 +29,13 @@ $reg_aluno = mysql_fetch_array($res_aluno);
   <input type="hidden" name="codg_aluno" value="<?php echo $reg_aluno['Id_Numero']; ?>">
   <label>Curso:</label>
   <?php
-  if($num < 1){
-    echo 'Nenhum curso cadastrado.';
+  if(!is_array($listaCursos))
+    echo '<p class="text-error">Nenhum curso cadastrado.</p>';
   }else{
-    while($registro = mysql_fetch_array($result)){
+    foreach ($listaCursos as $curso) {
     ?>
-      <input type="radio" name="codg_curso" value="<?php echo $registro['Codg_Curso']; ?>" checked><?php echo $registro['Nome']; ?>
-      <input type="hidden" name="nome_curso" value="<?php echo $registro['Nome']; ?>">
+      <?php echo $curso['Nome']; ?>
+      <input type="hidden" name="codg_curso" value="<?php echo $curso['Codg_Curso']; ?>">
     <?php
     }
   }
