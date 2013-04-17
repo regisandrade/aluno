@@ -5,11 +5,7 @@
 *  @autor Regis Andrade
 *
 */
-
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/professores.class.php";
+require_once "class/professores.class.php";
 $professoresDAO = new Professores();
 $listaProfessores = $professoresDAO->pesquisar($bd);
 ?>

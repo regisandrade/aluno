@@ -6,17 +6,16 @@
 *
 */
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/curso.class.php";
+require_once "class/curso.class.php";
 $cursoDAO = new Curso();
+
 $parametros['curso'] = $_SESSION['curso'];
 $listaCursos = $cursoDAO->pesquisar($bd,$parametros);
 unset($parametros);
 
-require_once "../class/aluno.class.php";
+require_once "class/aluno.class.php";
 $alunoDAO = new Aluno();
+
 $parametros['curso'] = $_SESSION['id_numero'];
 $listaAlunos = $alunoDAO->pesquisar($bd,$parametros);
 unset($parametros);

@@ -6,10 +6,7 @@
 *
 */
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/links.class.php";
+require_once "class/links.class.php";
 $linksDAO = new Links();
 $listaLinks = $linksDAO->pesquisar($bd);
 ?>

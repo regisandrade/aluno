@@ -6,10 +6,7 @@
 *
 */
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/cronograma.class.php";
+require_once "class/cronograma.class.php";
 $cronogramaDAO = new Cronograma();
 $listaCronogramas = $cronogramaDAO->pesquisar($bd);
 ?>

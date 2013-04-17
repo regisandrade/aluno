@@ -6,10 +6,7 @@
 *
 */
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/materiais.class.php";
+require_once "class/materiais.class.php";
 $materiaisDAO = new Materiais();
 $listaMateriais = $materiaisDAO->pesquisar($bd);
 ?>

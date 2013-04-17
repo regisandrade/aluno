@@ -6,10 +6,7 @@
 *
 */
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/notasFrequencias.class.php";
+require_once "class/notasFrequencias.class.php";
 $notasFrequenciasDAO = new NotasFrequencias();
 $listaNotasFrequencias = $notasFrequenciasDAO->pesquisar($bd);
 ?>

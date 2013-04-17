@@ -6,10 +6,7 @@
 *
 */
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/aviso.class.php";
+require_once "class/aviso.class.php";
 $avisoDAO = new Aviso();
 $listaAvisos = $avisoDAO->pesquisar($bd);
 ?>

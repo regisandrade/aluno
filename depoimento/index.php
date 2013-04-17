@@ -6,10 +6,7 @@
 *
 */
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/depoimento.class.php";
+require_once "class/depoimento.class.php";
 $depoimentoDAO = new Depoimento();
 $parametros['idNumero'] = $_SESSION['id_numero'];
 $parametros['idCurso']  = $_SESSION['curso'];
