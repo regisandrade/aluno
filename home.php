@@ -46,8 +46,15 @@
     </div>
 
     <div class="container">
-
-      <?php include "principal.php"; ?>
+    <?php 
+      $pagina = null;
+      if(isset($_REQUEST['pag'])){
+        $pagina = $_REQUEST['pag'] . isset($_REQUEST['arq']) ? '/'.$_REQUEST['arq'] : '';
+      }else{
+        $pagina = "principal.php";
+      }
+      include_once $pagina; 
+    ?>
 
       <hr>
 

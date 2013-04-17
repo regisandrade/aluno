@@ -8,7 +8,7 @@ class Senha{
 			               Login = ?";
 			
 			$rs = $pdo->prepare($sql);
-          	$count = $rs->execute(array($parametros['Senha']
+          	$count = $rs->execute(array($parametros['nova_senha']
                                           ,$parametros['Login']));
           	
           	//var_dump($count, $rs->errorInfo());
