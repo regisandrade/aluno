@@ -28,7 +28,7 @@ $listaAvisos = $avisoDAO->pesquisar($bd);
       foreach ($listaAvisos as $value) {
     ?>
     <tr>
-      <td><a href="#" onClick="Abrir_Aviso(<?php echo $value['Codg_Aviso'] ?>,318,250)"><?php echo $value['Titulo']; ?></a></td>
+      <td><a href="#" onClick="Abrir_Aviso(<?php echo $value['Codg_Aviso'] ?>,318,250)"><?php echo utf8_encode($value['Titulo']); ?></a></td>
       <td><?php echo $value['Data']; ?></td>
     </tr>
     <?php }

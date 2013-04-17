@@ -29,7 +29,7 @@ $listaArtigos = $artigoDAO->pesquisar($bd);
       foreach ($listaArtigos as $value) {
     ?>
     <tr>
-      <td><a href="../artigos/<?php echo $value['Artigo']; ?>" target="_blank"><?php echo $value['Descricao']; ?></a></td>
+      <td><a href="../artigos/<?php echo $value['Artigo']; ?>" target="_blank"><?php echo utf8_encode($value['Descricao']); ?></a></td>
       <td><?php echo $value['Data']; ?></td>
     </tr>
     <?php }

@@ -29,7 +29,7 @@ $listaLinks = $linksDAO->pesquisar($bd);
     ?>
     <tr>
       <td><?php echo $value['Tipo']; ?></td>
-      <td><a href="http://www.<?php echo $value['Link']; ?>/" target="_blank"><?php echo utf8_decode($value['Descricao']); ?></a></td>
+      <td><a href="http://www.<?php echo $value['Link']; ?>/" target="_blank"><?php echo utf8_encode($value['Descricao']); ?></a></td>
     </tr>
     <?php }
     } 
