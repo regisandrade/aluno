@@ -15,7 +15,7 @@ unset($parametros);
 
 $desabilitarBotao = null;
 if($verificarDepoimento['sucesso']){
-  $desabilitarBotao = ' disabled="true"';
+  $desabilitarBotao = ' disabled';
 ?>
   <script>
     alert("<?php echo $verificarDepoimento['mensagem']; ?>");
@@ -26,17 +26,34 @@ if($verificarDepoimento['sucesso']){
 ?>
 <h2>Depoimento</h2>
 
-<form name="form_depoimento" method="post" action="depoimento/gravar.php" onSubmit="return Verificar()">
+<form class="form-horizontal" name="form_depoimento" method="post" action="depoimento/gravar.php">
   <input type="hidden" name="aluno" value="<?php echo $_SESSION['id_numero']; ?>">
   <input type="hidden" name="curso" value="<?php echo $_SESSION['curso']; ?>">
   <input type="hidden" name="data" value="<?php echo date('Y-m-d'); ?>">
   <input type="hidden" name="status" value="0">
 
-  <label>Aluno:</label><?php echo $_SESSION['nomeALuno']; ?>
+  <div class="control-group">
+    <label class="control-label">Aluno:&nbsp;</label>
+    <div class="controls">
+      <?php echo $_SESSION['nomeALuno']; ?>
+    </div>
+  </div>
 
-  <label>Curso:</label><?php echo $_SESSION['nomeCurso']; ?>
+  <div class="control-group">
+    <label class="control-label">Curso:&nbsp;</label>
+    <div class="controls">
+      <?php echo $_SESSION['nomeCurso']; ?>
+    </div>
+  </div>
 
-  <label>Depoimento:</label><textarea name="depoimento" id="depoimento"></textarea>
- 
-  <button class="btn btn-large btn-primary" type="submit" <?php echo $desabilitarBotao ?> >Gravar Depoimento</button>
+  <div class="control-group">
+    <label class="control-label" for="mensagem">Depoimento:&nbsp;</label>
+    <div class="controls">
+      <textarea name="depoimento" id="depoimento" placeholder="Depoimento"></textarea></textarea>
+      <br/>
+      <br/>
+      <button class="btn btn-large btn-primary <?php echo $desabilitarBotao ?>" type="submit">Gravar Depoimento</button>
+    </div>
+  </div>
+  
 </form>

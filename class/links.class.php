@@ -1,5 +1,5 @@
 <?php
-class Artigo{
+class Links{
 	public function pesquisar($pdo,$parametros=null){
 		try {
 			$sql = "SELECT 
