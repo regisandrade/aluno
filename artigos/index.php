@@ -6,12 +6,10 @@
 *
 */
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
-
-require_once "../class/artigo.class.php";
+require_once "class/artigo.class.php";
 $artigoDAO = new Artigo();
 $listaArtigos = $artigoDAO->pesquisar($bd);
+
 ?>
 <h2>Artigos</h2>
 <table class="table table-striped table-bordered table-hover">

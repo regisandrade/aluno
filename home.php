@@ -1,3 +1,7 @@
+<?php
+require_once "../lib/myDB.class.php";
+$bd = new myDB();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -49,7 +53,7 @@
     <?php 
       $pagina = null;
       if(isset($_REQUEST['pag'])){
-        $pagina = $_REQUEST['pag'] . isset($_REQUEST['arq']) ? '/'.$_REQUEST['arq'] : '';
+        $pagina = $_REQUEST['pag'] . ($_REQUEST['arq'] ? '/'.$_REQUEST['arq'] : '');
       }else{
         $pagina = "principal.php";
       }
