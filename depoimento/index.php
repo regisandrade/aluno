@@ -1,30 +1,27 @@
 <?php
-$sql = "
-SELECT
-  ALU.Id_Numero,
-  ALU.Nome AS Aluno,
-  CUR.Codg_Curso,
-  CUR.Nome AS Curso
-FROM
-  aluno ALU
-INNER JOIN curso CUR ON
-  CUR.Codg_Curso = ALU.Curso
-WHERE
-  ALU.Id_Numero = '".$_SESSION['id_numero']."' AND ALU.Ano = ".$_SESSION['ano'];
-$result = mysql_query($sql) or die('Erro na consulta da Tabela de Usuario. '.mysql_error().'<br>'.$sql);
-$dados = mysql_fetch_array($result);
+/**
+*
+*  CONSULTA DE ARTIGOS
+*  @autor Regis Andrade
+*
+*/
 
+require_once "../../lib/myDB.class.php";
+$bd = new myDB();
 
-// Verificar se já existe um depoimento digitado
-$depoimento = "SELECT * FROM depoimento WHERE Aluno = '".$_SESSION['id_numero']."' AND Codg_Curso = ".$_SESSION['curso'];
-$res_depoimento = mysql_query($depoimento) or die('Erro na consulta da Tabela de Depoimento. '.mysql_error().'<br>'.$depoimento);
-$numero = mysql_num_rows($res_depoimento);
+require_once "../class/depoimento.class.php";
+$depoimentoDAO = new Depoimento();
+$parametros['idNumero'] = $_SESSION['id_numero'];
+$parametros['idCurso']  = $_SESSION['curso'];
+$verificarDepoimento = $depoimentoDAO->verificarDepoimento($bd,$parametros);
+unset($parametros);
 
-if($numero > 0){
+$desabilitarBotao = null;
+if($verificarDepoimento['sucesso']){
+  $desabilitarBotao = ' disabled="true"';
 ?>
   <script>
-    alert('Você já fez o seu Depoimento para este Curso.');
-    document.location = "home.php";
+    alert("<?php echo $verificarDepoimento['mensagem']; ?>");
   </script>
 <?php
   exit;
@@ -33,16 +30,16 @@ if($numero > 0){
 <h2>Depoimento</h2>
 
 <form name="form_depoimento" method="post" action="depoimento/gravar.php" onSubmit="return Verificar()">
-  <input type="hidden" name="aluno" value="<?php echo $dados['Id_Numero']; ?>">
-  <input type="hidden" name="curso" value="<?php echo $dados['Codg_Curso']; ?>">
+  <input type="hidden" name="aluno" value="<?php echo $_SESSION['id_numero']; ?>">
+  <input type="hidden" name="curso" value="<?php echo $_SESSION['curso']; ?>">
   <input type="hidden" name="data" value="<?php echo date('Y-m-d'); ?>">
   <input type="hidden" name="status" value="0">
 
-  <label>Aluno:</label><?php echo $dados['Aluno']; ?>
+  <label>Aluno:</label><?php echo $_SESSION['nomeALuno']; ?>
 
-  <label>Curso:</label><?php echo $dados['Curso']; ?>
+  <label>Curso:</label><?php echo $_SESSION['nomeCurso']; ?>
 
-  <label>Depoimento:</label><textarea name="depoimento" cols="50" rows="12" class="txtInscricaoGrande" id="depoimento"></textarea>
+  <label>Depoimento:</label><textarea name="depoimento" id="depoimento"></textarea>
  
-  <button class="btn btn-large btn-primary" type="submit">Gravar Depoimento</button>
+  <button class="btn btn-large btn-primary" type="submit" <?php echo $desabilitarBotao ?> >Gravar Depoimento</button>
 </form>
