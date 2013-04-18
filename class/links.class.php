@@ -5,9 +5,12 @@ class Links{
 			$sql = "SELECT 
 			               * 
 			        FROM 
-			               links 
-			        ORDER BY 
-			               Descricao";
+			               links \n";
+                        if($parametros['order']){
+                           $sql .= "ORDER BY ".$parametros['order'];
+                        }else{
+                           $sql .= "ORDER BY Descricao";
+                        }
 			
 			$rs = $pdo->prepare($sql);
           	$count = $rs->execute();
