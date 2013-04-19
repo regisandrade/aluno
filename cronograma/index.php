@@ -5,10 +5,13 @@
 *  @autor Regis Andrade
 *
 */
+session_start();
 
 require_once "class/cronograma.class.php";
 $cronogramaDAO = new Cronograma();
-$listaCronogramas = $cronogramaDAO->pesquisar($bd);
+$parametros['turma'] = $_SESSION['turma'];
+$listaCronogramas = $cronogramaDAO->pesquisar($bd,$parametros);
+unset($parametros);
 ?>
 <h2>Cronograma</h2>
 <table class="table table-striped table-bordered table-hover">
@@ -30,10 +33,11 @@ $listaCronogramas = $cronogramaDAO->pesquisar($bd);
       <td colspan="7"><p class="text-error">Nenhum registro encontrado.</p></td>
     </tr>
     <?php }else{ 
+      $conta = 0;
       foreach ($listaCronogramas as $value) {
     ?>
     <tr>
-      <td><?php echo ($conta + 1); ?>.&nbsp;<?php echo $value['Disciplina']; ?></td>
+      <td><?php echo ($conta + 1); ?>.&nbsp;<?php echo utf8_encode($value['Disciplina']); ?></td>
       <td><?php echo $value['Data_1']; ?></td>
       <td><?php echo $value['Data_2']; ?></td>
       <td><?php echo $value['Data_3']; ?></td>
@@ -41,7 +45,9 @@ $listaCronogramas = $cronogramaDAO->pesquisar($bd);
       <td><?php echo $value['Data_5']; ?></td>
       <td><?php echo $value['Data_6']; ?></td>
     </tr>
-    <?php }
+    <?php 
+         $conta++;
+      }
     } 
     ?>
   </tbody>

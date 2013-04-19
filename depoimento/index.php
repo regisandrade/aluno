@@ -8,8 +8,8 @@
 
 require_once "class/depoimento.class.php";
 $depoimentoDAO = new Depoimento();
-$parametros['idNumero'] = $_SESSION['id_numero'];
-$parametros['idCurso']  = $_SESSION['curso'];
+$parametros['idNumero'] = $_SESSION['idNumero'];
+$parametros['idCurso']  = $_SESSION['idCurso'];
 $verificarDepoimento = $depoimentoDAO->verificarDepoimento($bd,$parametros);
 unset($parametros);
 
@@ -27,8 +27,8 @@ if($verificarDepoimento['sucesso']){
 <h2>Depoimento</h2>
 
 <form class="form-horizontal" name="form_depoimento" method="post" action="depoimento/gravar.php">
-  <input type="hidden" name="aluno" value="<?php echo $_SESSION['id_numero']; ?>">
-  <input type="hidden" name="curso" value="<?php echo $_SESSION['curso']; ?>">
+  <input type="hidden" name="aluno" value="<?php echo $_SESSION['idNumero']; ?>">
+  <input type="hidden" name="curso" value="<?php echo $_SESSION['idCurso']; ?>">
   <input type="hidden" name="data" value="<?php echo date('Y-m-d'); ?>">
   <input type="hidden" name="status" value="0">
 

@@ -10,7 +10,7 @@ require_once "class/materiais.class.php";
 $materiaisDAO = new Materiais();
 $listaMateriais = $materiaisDAO->pesquisar($bd);
 ?>
-<h2>Cronograma</h2>
+<h2>Material Disponível</h2>
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>

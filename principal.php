@@ -1,6 +1,9 @@
+      <?php
+      session_start();
+      ?>
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1>Nome do aluno</h1>
+        <h1><?php echo $_SESSION['nomeAluno']; ?></h1>
         <p>Um local que o IPECON oferece aos alunos para interagir com os seus alunos.</p>        
       </div>
 

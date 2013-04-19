@@ -32,12 +32,12 @@ class Cronograma{
           		$arrDados = array();
           		while ($registro = $rs->fetch(PDO::FETCH_OBJ)) {
           			$arrDados[$conta]['Disciplina'] = $registro->Disciplina;
-          			$arrDados[$conta]['Data_01'] = $registro->Data_01;
-          			$arrDados[$conta]['Data_02'] = $registro->Data_02;
-          			$arrDados[$conta]['Data_03'] = $registro->Data_03;
-          			$arrDados[$conta]['Data_04'] = $registro->Data_04;
-          			$arrDados[$conta]['Data_05'] = $registro->Data_05;
-          			$arrDados[$conta]['Data_06'] = $registro->Data_06;
+          			$arrDados[$conta]['Data_1'] = ($registro->Data_1 != '00/00/0000' ? $registro->Data_1 : '--');
+          			$arrDados[$conta]['Data_2'] = ($registro->Data_2 != '00/00/0000' ? $registro->Data_2 : '--');
+          			$arrDados[$conta]['Data_3'] = ($registro->Data_3 != '00/00/0000' ? $registro->Data_3 : '--');
+          			$arrDados[$conta]['Data_4'] = ($registro->Data_4 != '00/00/0000' ? $registro->Data_4 : '--');
+          			$arrDados[$conta]['Data_5'] = ($registro->Data_5 != '00/00/0000' ? $registro->Data_5 : '--');
+          			$arrDados[$conta]['Data_6'] = ($registro->Data_6 != '00/00/0000' ? $registro->Data_6 : '--');
 
           			$conta++;
           		}
