@@ -1,4 +1,11 @@
 <?php
+session_start();
+$_SESSION['turma']     = "PJ004";
+$_SESSION['nomeCurso'] = "MBA em Perícia Judicial";
+$_SESSION['idCurso']   = "1";
+$_SESSION['idNumero']  = "36083445191";
+$_SESSION['nomeAluno'] = "Ana Marta Rocha";
+
 require_once "../lib/myDB.class.php";
 $bd = new myDB();
 ?>
