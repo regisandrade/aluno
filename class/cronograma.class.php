@@ -24,7 +24,7 @@ class Cronograma{
           	
           	//var_dump($count, $rs->errorInfo());
 
-          	if($count === false){
+          	if(!$rs){
           		$resposta['mensagem'] = "Nenhum registro encontrado.";
           		$resposta['sucesso'] = false;
           	}else{

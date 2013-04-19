@@ -14,17 +14,11 @@ unset($parametros);
 ?>
 <h2>Links</h2>
 <table class="table table-striped table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Tipo</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
 
   <tbody>
     <?php if(!is_array($listaLinks)){ ?>
     <tr>
-      <td colspan="2"><p class="text-error">Nenhum registro encontrado.</p></td>
+      <td colspan="2" class="error">Nenhum registro encontrado.</td>
     </tr>
     <?php }else{ 
       $tipo = null;

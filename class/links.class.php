@@ -13,27 +13,27 @@ class Links{
                         }
 			
 			$rs = $pdo->prepare($sql);
-          	$count = $rs->execute();
-          	
-          	//var_dump($count, $rs->errorInfo());
+    	$rs->execute();
+    	
+    	//var_dump($count, $rs->errorInfo());
 
-          	if($count === false){
-          		$resposta['mensagem'] = "Nenhum registro encontrado.";
-          		$resposta['sucesso'] = false;
-          	}else{
-          		$conta = 0;
-          		$arrDados = array();
-          		while ($registro = $rs->fetch(PDO::FETCH_OBJ)) {
-          			$arrDados[$conta]['Tipo'] = $registro->Tipo;
-          			$arrDados[$conta]['Link'] = $registro->Link;
-          			$arrDados[$conta]['Descricao'] = $registro->Descricao;
+    	if(!$rs){
+    		$resposta['mensagem'] = "Nenhum registro encontrado.";
+    		$resposta['sucesso'] = false;
+    	}else{
+    		$conta = 0;
+    		$arrDados = array();
+    		while ($registro = $rs->fetch(PDO::FETCH_OBJ)) {
+    			$arrDados[$conta]['Tipo'] = $registro->Tipo;
+    			$arrDados[$conta]['Link'] = $registro->Link;
+    			$arrDados[$conta]['Descricao'] = $registro->Descricao;
 
-          			$conta++;
-          		}
+    			$conta++;
+    		}
 
-          		$resposta['valores'] = $arrDados;
-          		$resposta['sucesso'] = true;
-          	}
+    		$resposta['valores'] = $arrDados;
+    		$resposta['sucesso'] = true;
+    	}
 
 		} catch (Exception $e) {
 			$resposta['mensagem'] = $e;

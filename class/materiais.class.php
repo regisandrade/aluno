@@ -2,42 +2,42 @@
 class Materiais{
 	public function pesquisar($pdo,$parametros=null){
 		try {
-			$sql = "SELECT
-					       DISC.Nome AS Disciplina
-					      ,DATE_FORMAT(CRO.Data_01,'%d/%m/%Y') AS Data_1
-					      ,DATE_FORMAT(CRO.Data_02,'%d/%m/%Y') AS Data_2
-					      ,DATE_FORMAT(CRO.Data_03,'%d/%m/%Y') AS Data_3
-					      ,DATE_FORMAT(CRO.Data_04,'%d/%m/%Y') AS Data_4
-					      ,DATE_FORMAT(CRO.Data_05,'%d/%m/%Y') AS Data_5
-					      ,DATE_FORMAT(CRO.Data_06,'%d/%m/%Y') AS Data_6
+			$sql = "SELECT 
+					      EXER.Codg_Exercicio
+					     ,EXER.Ano
+					     ,EXER.Exercicio
+					     ,EXER.Turma
+					     ,DATE_FORMAT(EXER.Data_Cadastro,'%d/%m/%Y') AS Data
+					     ,EXER.Tipo_Material
 					FROM
-					       cronograma CRO
-					INNER JOIN disciplina DISC ON
-					       DISC.Codg_Disciplina = CRO.Disciplina
+					      exercicio EXER
+					INNER JOIN turma TUR ON 
+					      TUR.TURMA = EXER.Turma
+					  AND TUR.Ano   = EXER.Ano
 					WHERE
-					       CRO.Turma = ?
+					      TUR.Turma = ?
+					GROUP BY
+					      EXER.Codg_Exercicio
 					ORDER BY
-					       CRO.Data_01, CRO.Data_02, CRO.Data_03, CRO.Data_04, CRO.Data_05, CRO.Data_06 DESC";
+					      EXER.Exercicio";
 			
 			$rs = $pdo->prepare($sql);
-          	$count = $rs->execute(array($parametros['turma']));
-          	
-          	//var_dump($count, $rs->errorInfo());
+          	$rs->execute(array($parametros['turma']));
 
-          	if($count === false){
+          	//var_dump($num);
+
+          	if(!$rs){
           		$resposta['mensagem'] = "Nenhum registro encontrado.";
           		$resposta['sucesso'] = false;
           	}else{
           		$conta = 0;
           		$arrDados = array();
           		while ($registro = $rs->fetch(PDO::FETCH_OBJ)) {
-          			$arrDados[$conta]['Disciplina'] = $registro->Disciplina;
-          			$arrDados[$conta]['Data_01'] = $registro->Data_01;
-          			$arrDados[$conta]['Data_02'] = $registro->Data_02;
-          			$arrDados[$conta]['Data_03'] = $registro->Data_03;
-          			$arrDados[$conta]['Data_04'] = $registro->Data_04;
-          			$arrDados[$conta]['Data_05'] = $registro->Data_05;
-          			$arrDados[$conta]['Data_06'] = $registro->Data_06;
+          			$arrDados[$conta]['ano'] = $registro->Ano;
+          			$arrDados[$conta]['exercicio'] = $registro->Exercicio;
+          			$arrDados[$conta]['turma'] = $registro->Turma;
+          			$arrDados[$conta]['data'] = $registro->Data;
+          			$arrDados[$conta]['tipoMaterial'] = $registro->Tipo_Material;
 
           			$conta++;
           		}

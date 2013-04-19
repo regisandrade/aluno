@@ -35,7 +35,7 @@ if($verificarDepoimento['sucesso']){
   <div class="control-group">
     <label class="control-label">Aluno:&nbsp;</label>
     <div class="controls">
-      <?php echo $_SESSION['nomeALuno']; ?>
+      <?php echo $_SESSION['nomeAluno']; ?>
     </div>
   </div>
 
@@ -49,7 +49,7 @@ if($verificarDepoimento['sucesso']){
   <div class="control-group">
     <label class="control-label" for="mensagem">Depoimento:&nbsp;</label>
     <div class="controls">
-      <textarea name="depoimento" id="depoimento" placeholder="Depoimento"></textarea></textarea>
+      <textarea name="depoimento" id="depoimento" placeholder="Escrever depoimento" rows="5"></textarea>
       <br/>
       <br/>
       <button class="btn btn-large btn-primary <?php echo $desabilitarBotao ?>" type="submit">Gravar Depoimento</button>

@@ -22,7 +22,7 @@ $listaAvisos = $avisoDAO->pesquisar($bd);
   <tbody>
     <?php if(!is_array($listaAvisos)){ ?>
     <tr>
-      <td colspan="2"><p class="text-error">Nenhum registro encontrado.</p></td>
+      <td colspan="2" class="error">Nenhum registro encontrado.</td>
     </tr>
     <?php }else{ 
       foreach ($listaAvisos as $value) {

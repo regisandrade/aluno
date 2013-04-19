@@ -30,7 +30,7 @@ unset($parametros);
   <tbody>
     <?php if(!is_array($listaCronogramas)){ ?>
     <tr>
-      <td colspan="7"><p class="text-error">Nenhum registro encontrado.</p></td>
+      <td colspan="7" class="error">Nenhum registro encontrado.</td>
     </tr>
     <?php }else{ 
       $conta = 0;

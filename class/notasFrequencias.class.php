@@ -2,42 +2,53 @@
 class NotasFrequencias{
 	public function pesquisar($pdo,$parametros=null){
 		try {
-			$sql = "SELECT
-					       DISC.Nome AS Disciplina
-					      ,DATE_FORMAT(CRO.Data_01,'%d/%m/%Y') AS Data_1
-					      ,DATE_FORMAT(CRO.Data_02,'%d/%m/%Y') AS Data_2
-					      ,DATE_FORMAT(CRO.Data_03,'%d/%m/%Y') AS Data_3
-					      ,DATE_FORMAT(CRO.Data_04,'%d/%m/%Y') AS Data_4
-					      ,DATE_FORMAT(CRO.Data_05,'%d/%m/%Y') AS Data_5
-					      ,DATE_FORMAT(CRO.Data_06,'%d/%m/%Y') AS Data_6
+			$sql = "SELECT DISTINCT
+					        AC.Turma
+					       ,DIS.Nome AS NomeDisciplina
+					       ,AC.Nota
+					       ,AC.Frequencia
+					       ,AC.Aluno
+					       ,CRO.Data_01
+					       ,CRO.Data_02
+					       ,CRO.Data_03
+					       ,CRO.Data_04
+					       ,CRO.Data_05
+					       ,CRO.Data_06
 					FROM
-					       cronograma CRO
-					INNER JOIN disciplina DISC ON
-					       DISC.Codg_Disciplina = CRO.Disciplina
+					        alunos_academicos AC
+					INNER JOIN disciplina DIS ON
+					        (DIS.Codg_Disciplina = AC.Disciplina)
+					INNER JOIN cronograma CRO ON
+					        (CRO.Turma = AC.Turma AND CRO.Disciplina = AC.Disciplina)
 					WHERE
-					       CRO.Turma = ?
-					ORDER BY
-					       CRO.Data_01, CRO.Data_02, CRO.Data_03, CRO.Data_04, CRO.Data_05, CRO.Data_06 DESC";
+					        AC.Ano   = ?
+					    AND AC.Turma = ?
+					    AND AC.Aluno = ?";
+					
+					if(!in_array($_SESSION['turma'], $arrTurmas)){
+					    $comando .= "     \nAND AC.Disciplina <> 23 \n";
+					}
+
+					$sql .= "ORDER BY
+					        CRO.Data_01, CRO.Data_02, CRO.Data_03, CRO.Data_04, CRO.Data_05, CRO.Data_06";
 			
 			$rs = $pdo->prepare($sql);
-          	$count = $rs->execute(array($parametros['turma']));
-          	
+          	$rs->execute(array($parametros['ano'],
+          	                   $parametros['turma'],
+          	                   $parametros['idNumero']));
+
           	//var_dump($count, $rs->errorInfo());
 
-          	if($count === false){
+          	if(!$rs){
           		$resposta['mensagem'] = "Nenhum registro encontrado.";
           		$resposta['sucesso'] = false;
           	}else{
           		$conta = 0;
           		$arrDados = array();
           		while ($registro = $rs->fetch(PDO::FETCH_OBJ)) {
-          			$arrDados[$conta]['Disciplina'] = $registro->Disciplina;
-          			$arrDados[$conta]['Data_01'] = $registro->Data_01;
-          			$arrDados[$conta]['Data_02'] = $registro->Data_02;
-          			$arrDados[$conta]['Data_03'] = $registro->Data_03;
-          			$arrDados[$conta]['Data_04'] = $registro->Data_04;
-          			$arrDados[$conta]['Data_05'] = $registro->Data_05;
-          			$arrDados[$conta]['Data_06'] = $registro->Data_06;
+          			$arrDados[$conta]['disciplina'] = utf8_encode($registro->NomeDisciplina);
+          			$arrDados[$conta]['nota'] = $registro->Nota;
+          			$arrDados[$conta]['frequencia'] = $registro->Frequencia;
 
           			$conta++;
           		}

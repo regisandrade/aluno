@@ -8,39 +8,47 @@
 
 require_once "class/materiais.class.php";
 $materiaisDAO = new Materiais();
-$listaMateriais = $materiaisDAO->pesquisar($bd);
+$parametros['turma'] = $_SESSION['turma'];
+$listaMateriais = $materiaisDAO->pesquisar($bd,$parametros);
+unset($parametros);
 ?>
 <h2>Material Disponível</h2>
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>Disciplina</th>
-      <th>1ª Data</th>
-      <th>2ª Data</th>
-      <th>3ª Data</th>
-      <th>4ª Data</th>
-      <th>5ª Data</th>
-      <th>6ª Data</th>
+      <th>Tipo</th>
+      <th>Material</th>
     </tr>
   </thead>
 
   <tbody>
     <?php if(!is_array($listaMateriais)){ ?>
     <tr>
-      <td colspan="7"><p class="text-error">Nenhum registro encontrado.</p></td>
+      <td colspan="2" class="error">Nenhum registro encontrado.</td>
     </tr>
     <?php }else{ 
       foreach ($listaMateriais as $value) {
+        switch($value['tipoMaterial']){
+          case 1:
+            $nomeTipo = 'Exercícios';
+            break;
+          case 2:
+            $nomeTipo = 'Material Didático';
+            break;
+          case 3:
+            $nomeTipo = 'Material de Apoio';
+            break;
+          case 4:
+            $nomeTipo = 'Trabalhos';
+            break;
+          case 5:
+            $nomeTipo = 'Apostilas';
+            break;
+        }
     ?>
     <tr>
-      <td><?php echo ($conta + 1); ?>.&nbsp;<?php echo $value['Disciplina']; ?></td>
-      <td><?php echo $value['Data_1']; ?></td>
-      <td><?php echo $value['Data_2']; ?></td>
-      <td><?php echo $value['Data_3']; ?></td>
-      <td><?php echo $value['Data_4']; ?></td>
-      <td><?php echo $value['Data_5']; ?></td>
-      <td><?php echo $value['Data_6']; ?></td>
-    </tr>
+      <td><?php echo $nomeTipo; ?></td>
+      <td><a href="../exercicios/<?php echo $value['exercicio']; ?>" target="_blank" title="Data: <?php echo $value['data']; ?>"><?php echo $value['exercicio']; ?></a></td>
     <?php }
     } 
     ?>
