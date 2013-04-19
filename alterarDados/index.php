@@ -9,14 +9,14 @@
 require_once "class/curso.class.php";
 $cursoDAO = new Curso();
 
-$parametros['curso'] = $_SESSION['curso'];
+$parametros['curso'] = $_SESSION['idCurso'];
 $listaCursos = $cursoDAO->pesquisar($bd,$parametros);
 unset($parametros);
 
 require_once "class/aluno.class.php";
 $alunoDAO = new Aluno();
 
-$parametros['curso'] = $_SESSION['id_numero'];
+$parametros['idNumero'] = $_SESSION['idNumero'];
 $listaAlunos = $alunoDAO->pesquisar($bd,$parametros);
 unset($parametros);
 ?>
