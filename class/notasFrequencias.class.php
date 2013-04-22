@@ -25,8 +25,8 @@ class NotasFrequencias{
 					    AND AC.Turma = ?
 					    AND AC.Aluno = ?";
 					
-					if(!in_array($_SESSION['turma'], $arrTurmas)){
-					    $comando .= "     \nAND AC.Disciplina <> 23 \n";
+					if($parametros['turma'] && $parametros['arrTurmas'] && (!in_array($parametros['turma'], $parametros['arrTurmas']))){
+					    $comando .= "\n AND AC.Disciplina <> 23 \n";
 					}
 
 					$sql .= "ORDER BY

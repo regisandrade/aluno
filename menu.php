@@ -13,7 +13,7 @@ foreach($menu->menuIpeconAreaAluno() as $linha){
     if(is_array($linha[1])){
       echo "\t\t\t<ul class=\"dropdown-menu\">\n";
       foreach($linha[1] as $linhaSub){
-        echo "\t\t\t\t<li><a href=\"".$linhaSub[1]."\">".$linhaSub[0]."</a></li>\n";
+        echo "\t\t\t\t<li><a href=\"".$linhaSub[1]."\"".(!empty($linhaSub[2]) ? $linhaSub[2] : '').">".$linhaSub[0]."</a></li>\n";
       }
       echo "\t\t\t</ul>\n";
     }

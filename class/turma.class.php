@@ -3,20 +3,20 @@ class Turma{
 	public function pesquisarDataInicialFinal($pdo,$parametros=null){
 		try {
 			$sql = "SELECT 
-                           Descricao AS NomeTurma
+                           Nome AS NomeTurma
                           ,DATE_FORMAT(Data_Inicial,'%d/%m/%Y') AS Data_Inicial
                           ,DATE_FORMAT(Data_Final,'%d/%m/%Y') AS Data_Final
-                FROM 
+                    FROM 
                            turma
-                WHERE 
+                    WHERE 
                            Turma = ?
-                GROUP BY 
+                    GROUP BY 
                            Descricao";
 			
     		$rs = $pdo->prepare($sql);
         	$rs->execute(array($parametros['turma']));
 
-        	//var_dump($registro, $rs->errorInfo());
+        	//var_dump($rs, $rs->errorInfo());
 
         	if(!$rs){
         		$resposta['mensagem'] = "Nenhum registro encontrado.";
@@ -27,7 +27,7 @@ class Turma{
                 
         		while ($registro = $rs->fetch(PDO::FETCH_OBJ)) {
         			$arrDados[$conta]['nomeTurma'] = utf8_encode($registro->NomeTurma);
-        			$arrDados[$conta]['dataInicial'] = registro->Data_Inicial;
+        			$arrDados[$conta]['dataInicial'] = $registro->Data_Inicial;
         			$arrDados[$conta]['dataFinal'] = $registro->Data_Final;
 
         			$conta++;
