@@ -1,11 +1,40 @@
 <?php
 class Depoimento{
 
-     public function incluir(){
+     public function incluir($pdo,$para){
+          try {
+               $sql = "INSERT INTO depoimento (
+                              Aluno
+                             ,Codg_Curso
+                       ) VALUES (
+                              :title
+                             ,:author)";
 
+               $rs = $pdo->prepare($sql);
+               $rs->execute(array(':author'=>$author,
+                                  ':title'=>$title));
+               
+               //var_dump($rs, $rs->errorInfo());
+
+               if(!$rs){
+                    $resposta['mensagem'] = "Erro ao tentar realizar o Depoimento.";
+                    $resposta['sucesso']  = false;
+               }else{
+                    $resposta['mensagem'] = "Depoimento realizado com sucesso.";
+                    $resposta['sucesso']  = true;
+               }
+
+          } catch (Exception $e) {
+               $resposta['mensagem'] = $e;
+               $resposta['sucesso']  = false;
+          }
+
+          $pdo = null;
+          return $arrDados;
+          //echo json_encode($resposta);
      }
 
-     public function gravar(){
+     public function alterar(){
 
      }
 
