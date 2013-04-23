@@ -81,3 +81,43 @@ $('#alterarSenhaAluno').live('click',function(){
         }
     });
 });
+
+$('#alterarSenhaAluno').live('click',function(){
+    $('body').append('<div id="alertaAjuda"></div>');
+
+    var form = $('form[name=formAjuda]');
+    $.ajax({
+        url : form.attr('action'),
+        data : form.serialize(),
+        type: 'POST',
+        dataType: "json",
+        success : function(resposta) {
+            //console.log(resposta.sucesso);
+            //console.log(resposta.valor);
+            if(resposta && resposta.sucesso == true){
+                $('#alertaAjuda').html(resposta.mensagem);
+                //alert(resposta.mensagem);
+            }else{
+                //alert(resposta.mensagem);
+                $('#alertaAjuda').html(resposta.mensagem);
+            }
+            // Dialog
+            $('#alertaAjuda').dialog({
+                resizable: false,
+                //width:'450',
+                //height:'360',
+                title: 'Alerta',
+                modal: true,
+                close: function(){
+                    $('#alertaAjuda').remove();
+                },
+                buttons: {
+                    "Fechar": function() {
+                        $(this).dialog( "close" );
+                        return false;
+                    }
+                }
+            });
+        }
+    });
+});

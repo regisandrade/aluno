@@ -1,6 +1,5 @@
-<h2>Ajuda</h2>
-<p>
-  <form class="form-horizontal">
+<h2>Ajuda</h2> <p>
+  <form name="formAjuda" class="form-horizontal" method="POST" action="ajuda/enviar.php">
     
     <div class="control-group">
       <label class="control-label" for="nome">Nome:</label>
