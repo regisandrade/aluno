@@ -19,6 +19,10 @@ $bd = new myDB();
     <meta name="description" content="">
     <meta name="author" content="regisandrade@gmail.com">
 
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+
     <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">

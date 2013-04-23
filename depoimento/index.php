@@ -26,11 +26,10 @@ if($verificarDepoimento['sucesso']){
 ?>
 <h2>Depoimento</h2>
 
-<form class="form-horizontal" name="form_depoimento" method="post" action="depoimento/gravar.php">
-  <input type="hidden" name="aluno" value="<?php echo $_SESSION['idNumero']; ?>">
-  <input type="hidden" name="curso" value="<?php echo $_SESSION['idCurso']; ?>">
-  <input type="hidden" name="data" value="<?php echo date('Y-m-d'); ?>">
-  <input type="hidden" name="status" value="0">
+<form class="form-horizontal" name="formDepoimento" method="post" action="depoimento/gravar.php">
+  <input type="hidden" name="aluno" value="<?php echo $_SESSION['idNumero']; ?>"/>
+  <input type="hidden" name="curso" value="<?php echo $_SESSION['idCurso']; ?>"/>
+  <input type="hidden" name="ACAO" value="GRAVAR"/>
 
   <div class="control-group">
     <label class="control-label">Aluno:&nbsp;</label>
@@ -52,8 +51,7 @@ if($verificarDepoimento['sucesso']){
       <textarea name="depoimento" id="depoimento" placeholder="Escrever depoimento" rows="5"></textarea>
       <br/>
       <br/>
-      <button class="btn btn-large btn-primary <?php echo $desabilitarBotao ?>" type="submit">Gravar Depoimento</button>
+      <button id="gravarDepoimento" class="btn btn-large btn-primary <?php echo $desabilitarBotao ?>" type="buttom">Gravar Depoimento</button>
     </div>
   </div>
-  
 </form>

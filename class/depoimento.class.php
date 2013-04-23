@@ -1,18 +1,27 @@
 <?php
 class Depoimento{
 
-     public function incluir($pdo,$para){
+     public function incluir($pdo,$parametros){
           try {
                $sql = "INSERT INTO depoimento (
                               Aluno
                              ,Codg_Curso
+                             ,Depoimento
+                             ,DATA
+                             ,STATUS
                        ) VALUES (
-                              :title
-                             ,:author)";
+                              :aluno
+                             ,:codgCurso
+                             ,:depoimento
+                             ,:data
+                             ,status)";
 
                $rs = $pdo->prepare($sql);
-               $rs->execute(array(':author'=>$author,
-                                  ':title'=>$title));
+               $rs->execute(array(':aluno'=>$parametros['idNumero'],
+                                  ':codgCurso'=>$parametros['codgCurso'],
+                                  ':depoimento'=>$parametros['depoimento'],
+                                  ':data'=>date('Y-m-d'),
+                                  ':status'=>0));
                
                //var_dump($rs, $rs->errorInfo());
 
@@ -30,8 +39,8 @@ class Depoimento{
           }
 
           $pdo = null;
-          return $arrDados;
-          //echo json_encode($resposta);
+          //return $arrDados;
+          echo json_encode($resposta);
      }
 
      public function alterar(){
@@ -53,17 +62,30 @@ class Depoimento{
                           AND Codg_Curso = ? ";
                
                $rs = $pdo->prepare($sql);
-               $count = $rs->execute(array($parametros['idNumero']
-                                          ,$parametros['idCurso']));
+               $rs->execute(array($parametros['idNumero']
+                                 ,$parametros['idCurso']));
                
                //var_dump($count, $rs->errorInfo());
 
-               if($count === false){
+               if(!$rs){
                     $resposta['mensagem'] = "Nenhum registro encontrado.";
                     $resposta['sucesso']  = false;
                }else{
-                    $resposta['mensagem'] = "Você já realizou Depoimento para este Curso.";
-                    $resposta['sucesso']  = true;
+                    $conta = 0;
+                    $arrDados = array();
+                    while ($registro = $rs->fetch(PDO::FETCH_OBJ)) {
+                      $arrDados[$conta]['idDepoimento'] = $registro->ID_Depoimento;
+                      $arrDados[$conta]['aluno'] = $registro->Aluno;
+                      $arrDados[$conta]['codgCurso'] = $registro->Codg_Curso;
+                      $arrDados[$conta]['depoimento'] = $registro->Depoimento;
+                      $arrDados[$conta]['data'] = $registro->DATA;
+                      $arrDados[$conta]['status'] = $registro->STATUS;
+
+                      $conta++;
+                    }
+
+                    $resposta['valores'] = $arrDados;
+                    $resposta['sucesso'] = true;
                }
 
           } catch (Exception $e) {
@@ -90,15 +112,31 @@ class Depoimento{
                     $resposta['mensagem'] = "Nenhum registro encontrado.";
                     $resposta['sucesso']  = false;
                }else{
-                    $resposta['valores']  = "";
-                    $resposta['mensagem'] = "";
-                    $resposta['sucesso']  = true;
+                    $conta = 0;
+                    $arrDados = array();
+                    while ($registro = $rs->fetch(PDO::FETCH_OBJ)) {
+                      $arrDados[$conta]['idDepoimento'] = $registro->ID_Depoimento;
+                      $arrDados[$conta]['aluno'] = $registro->Aluno;
+                      $arrDados[$conta]['codgCurso'] = $registro->Codg_Curso;
+                      $arrDados[$conta]['depoimento'] = $registro->Depoimento;
+                      $arrDados[$conta]['data'] = $registro->DATA;
+                      $arrDados[$conta]['status'] = $registro->STATUS;
+
+                      $conta++;
+                    }
+
+                    $resposta['valores'] = $arrDados;
+                    $resposta['sucesso'] = true;
                }
                
           } catch (Exception $e) {
                $resposta['mensagem'] = $e;
                $resposta['sucesso'] = false;
           }
+
+          $pdo = null;
+          return $arrDados;
+          //echo json_encode($resposta);
      }
 
 }
