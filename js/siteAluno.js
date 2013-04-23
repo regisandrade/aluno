@@ -39,3 +39,45 @@ $('#gravarDepoimento').live('click',function(){
         }
     });
 });
+
+/* Gravra alterar senha do aluno */
+$('#alterarSenhaAluno').live('click',function(){
+
+    $('body').append('<div id="alertaAlteraSenha"></div>');
+
+    var form = $('form[name=formAlterarSenha]');
+    $.ajax({
+        url : form.attr('action'),
+        data : form.serialize(),
+        type: 'POST',
+        dataType: "json",
+        success : function(resposta) {
+            //console.log(resposta.sucesso);
+            //console.log(resposta.valor);
+            if(resposta && resposta.sucesso == true){
+                $('#alertaAlteraSenha').html(resposta.mensagem);
+                //alert(resposta.mensagem);
+            }else{
+                //alert(resposta.mensagem);
+                $('#alertaAlteraSenha').html(resposta.mensagem);
+            }
+            // Dialog
+            $('#alertaAlteraSenha').dialog({
+                resizable: false,
+                //width:'450',
+                //height:'360',
+                title: 'Alerta',
+                modal: true,
+                close: function(){
+                    $('#alertaAlteraSenha').remove();
+                },
+                buttons: {
+                    "Fechar": function() {
+                        $(this).dialog( "close" );
+                        return false;
+                    }
+                }
+            });
+        }
+    });
+});
