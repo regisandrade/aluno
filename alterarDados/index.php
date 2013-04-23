@@ -22,7 +22,8 @@ if (is_array($dadosAluno)) {
 
 <p class="text-error">Atenção: se os seus dados estiveren incompletos, favor completar.</p>
 
-<form class="form-horizontal" name="form-aluno" method="post" action="alterar_cadastro/cadastro_alterado.php">
+<form class="form-horizontal" name="formAluno" method="post" action="alterarDados/gravar.php">
+  <input type="hidden" name="ACAO" value="ALTERAR">
   <input type="hidden" name="id" value="<?php echo $dadosAluno['id']; ?>">
   <input type="hidden" name="codg_curso" value="<?php echo $_SESSION['idCurso']; ?>">
 
@@ -246,7 +247,7 @@ if (is_array($dadosAluno)) {
       <input name="conclusao" type="text" id="conclusao" class="input-mini" value="<?php echo $dadosAluno['anoConclusao']; ?>" required>
       <br>
       <br>
-      <button class="btn btn-large btn-primary" type="submit">Alterar dados</button>
+      <button id="alterarDadosAluno" class="btn btn-large btn-primary" type="buttom">Alterar dados</button>
     </div>
   </div>
     

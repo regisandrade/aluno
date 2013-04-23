@@ -121,3 +121,45 @@ $('#alterarSenhaAluno').live('click',function(){
         }
     });
 });
+
+/* Alterar dados do aluno */
+$('#alterarDadosAluno').live('click',function(){
+
+    $('body').append('<div id="alertaDados"></div>');
+
+    var form = $('form[name=formAluno]');
+    $.ajax({
+        url : form.attr('action'),
+        data : form.serialize(),
+        type: 'POST',
+        dataType: "json",
+        success : function(resposta) {
+            //console.log(resposta.sucesso);
+            //console.log(resposta.valor);
+            if(resposta && resposta.sucesso == true){
+                $('#alertaDados').html(resposta.mensagem);
+                //alert(resposta.mensagem);
+            }else{
+                //alert(resposta.mensagem);
+                $('#alertaDados').html(resposta.mensagem);
+            }
+            // Dialog
+            $('#alertaDados').dialog({
+                resizable: false,
+                //width:'450',
+                //height:'360',
+                title: 'Alerta',
+                modal: true,
+                close: function(){
+                    $('#alertaDados').remove();
+                },
+                buttons: {
+                    "Fechar": function() {
+                        $(this).dialog( "close" );
+                        return false;
+                    }
+                }
+            });
+        }
+    });
+});
