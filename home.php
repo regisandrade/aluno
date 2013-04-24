@@ -19,9 +19,11 @@ $bd = new myDB();
     <meta name="description" content="">
     <meta name="author" content="regisandrade@gmail.com">
 
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <script src="js/jquery-1.9.1.js"></script>
-    <script src="js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+    <script src="js/siteAluno.js"></script>
 
     <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -83,7 +85,6 @@ $bd = new myDB();
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap/js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap-transition.js"></script>
     <script src="bootstrap/js/bootstrap-alert.js"></script>
     <script src="bootstrap/js/bootstrap-modal.js"></script>

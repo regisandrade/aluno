@@ -1,5 +1,5 @@
 <?php
-require_once "../lib/util.class.php";
+require_once "../../lib/util.class.php";
 $util = new Util();
 
 if (!empty($_REQUEST['nome']) && !empty($_REQUEST['email']) && !empty($_REQUEST['para']) && !empty($_REQUEST['mensagem'])) {
@@ -11,8 +11,12 @@ if (!empty($_REQUEST['nome']) && !empty($_REQUEST['email']) && !empty($_REQUEST[
     $parametros['emailPara'] = $_REQUEST['para'];
     $parametros['nomeFrom']  = $_REQUEST['nome'];
     $parametros['emailFrom'] = $_REQUEST['email'];
-
-	if($util->enviarEmail($parametros)){
+    
+    // echo "<pre>";
+    // print_r($_REQUEST);
+    // echo "</pre>";
+	
+    if($util->enviarEmail($parametros)){
 		$resposta['mensagem'] = "Mensagem enviada com sucesso.";
         $resposta['sucesso']  = true;
 	}else{

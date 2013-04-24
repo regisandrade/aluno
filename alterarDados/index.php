@@ -247,7 +247,7 @@ if (is_array($dadosAluno)) {
       <input name="conclusao" type="text" id="conclusao" class="input-mini" value="<?php echo $dadosAluno['anoConclusao']; ?>" required>
       <br>
       <br>
-      <button id="alterarDadosAluno" class="btn btn-large btn-primary" type="buttom">Alterar dados</button>
+      <button id="alterarDadosAluno" class="btn btn-large btn-primary" type="button">Alterar dados</button>
     </div>
   </div>
     

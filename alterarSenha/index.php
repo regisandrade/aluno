@@ -24,7 +24,7 @@
 				<input name="repetir_senha" type="password" id="repetir_senha" class="input-medium" required>
 				<br/>
         		<br/>
-        		<button id="alertaAlteraSenha" class="btn btn-large btn-primary" type="buttom">Alterar Senha</button>
+        		<button id="alertaAlteraSenha" class="btn btn-large btn-primary" type="button">Alterar Senha</button>
 			</div>
 		</div>
   

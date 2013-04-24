@@ -1,165 +1,109 @@
-/* Gravra depoimento do aluno */
-$('#gravarDepoimento').live('click',function(){
-
-    $('body').append('<div id="alertaGravarDepoimento"></div>');
-
-    var form = $('form[name=formDepoimento]');
-    $.ajax({
-        url : form.attr('action'),
-        data : form.serialize(),
-        type: 'POST',
-        dataType: "json",
-        success : function(resposta) {
-            //console.log(resposta.sucesso);
-            //console.log(resposta.valor);
-            if(resposta && resposta.sucesso == true){
-            	$('#alertaGravarDepoimento').html(resposta.mensagem);
-                //alert(resposta.mensagem);
-            }else{
-                //alert(resposta.mensagem);
-                $('#alertaGravarDepoimento').html(resposta.mensagem);
+function alertaDialog(resposta,param){
+    if(resposta && resposta.sucesso == true){
+        $(param.idDiv).html('<p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>'+resposta.mensagem+'</p>');
+    }else{
+        $(param.idDiv).html('<p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>'+resposta.mensagem+'</p>');
+    }
+    // Dialog
+    $(param.idDiv).dialog({
+        resizable: false,
+        width: param.largura,
+        height: param.altura,
+        title: param.titulo,
+        modal: true,
+        buttons: {
+            Ok: function() {
+                $(this).dialog( "close" );
             }
-            // Dialog
-            $('#alertaGravarDepoimento').dialog({
-                resizable: false,
-                //width:'450',
-                //height:'360',
-                title: 'Alerta',
-                modal: true,
-                close: function(){
-                    $('#alertaGravarDepoimento').remove();
-                },
-                buttons: {
-                    "Fechar": function() {
-                        $(this).dialog( "close" );
-                        return false;
-                    }
-                }
-            });
         }
     });
-});
+}
 
-/* Gravra alterar senha do aluno */
-$('#alterarSenhaAluno').live('click',function(){
+$(document).ready(function() {
+    /* Gravra depoimento do aluno */
+    $('#gravarDepoimento').click(function(){
 
-    $('body').append('<div id="alertaAlteraSenha"></div>');
+        $('body').append('<div id="dialog-message"></div>');
 
-    var form = $('form[name=formAlterarSenha]');
-    $.ajax({
-        url : form.attr('action'),
-        data : form.serialize(),
-        type: 'POST',
-        dataType: "json",
-        success : function(resposta) {
-            //console.log(resposta.sucesso);
-            //console.log(resposta.valor);
-            if(resposta && resposta.sucesso == true){
-                $('#alertaAlteraSenha').html(resposta.mensagem);
-                //alert(resposta.mensagem);
-            }else{
-                //alert(resposta.mensagem);
-                $('#alertaAlteraSenha').html(resposta.mensagem);
+        var form = $('form[name=formDepoimento]');
+        $.ajax({
+            url : form.attr('action'),
+            data : form.serialize(),
+            type: 'POST',
+            dataType: "json",
+            success : function(resposta) {
+                param = {'idDiv':"#dialog-message",
+                         'largura':400,
+                         'altura':200,
+                         'titulo':"Alerta"};
+
+                alertaDialog(resposta,param);
             }
-            // Dialog
-            $('#alertaAlteraSenha').dialog({
-                resizable: false,
-                //width:'450',
-                //height:'360',
-                title: 'Alerta',
-                modal: true,
-                close: function(){
-                    $('#alertaAlteraSenha').remove();
-                },
-                buttons: {
-                    "Fechar": function() {
-                        $(this).dialog( "close" );
-                        return false;
-                    }
-                }
-            });
-        }
+        });
     });
-});
 
-$('#alterarSenhaAluno').live('click',function(){
-    $('body').append('<div id="alertaAjuda"></div>');
+    /* Gravra alterar senha do aluno */
+    $('#alterarSenhaAluno').click(function(){
 
-    var form = $('form[name=formAjuda]');
-    $.ajax({
-        url : form.attr('action'),
-        data : form.serialize(),
-        type: 'POST',
-        dataType: "json",
-        success : function(resposta) {
-            //console.log(resposta.sucesso);
-            //console.log(resposta.valor);
-            if(resposta && resposta.sucesso == true){
-                $('#alertaAjuda').html(resposta.mensagem);
-                //alert(resposta.mensagem);
-            }else{
-                //alert(resposta.mensagem);
-                $('#alertaAjuda').html(resposta.mensagem);
+        $('body').append('<div id="dialog-message"></div>');
+
+        var form = $('form[name=formAlterarSenha]');
+        $.ajax({
+            url : form.attr('action'),
+            data : form.serialize(),
+            type: 'POST',
+            dataType: "json",
+            success : function(resposta) {
+                param = {'idDiv':"#dialog-message",
+                         'largura':400,
+                         'altura':200,
+                         'titulo':"Alerta"};
+
+                alertaDialog(resposta,param);
             }
-            // Dialog
-            $('#alertaAjuda').dialog({
-                resizable: false,
-                //width:'450',
-                //height:'360',
-                title: 'Alerta',
-                modal: true,
-                close: function(){
-                    $('#alertaAjuda').remove();
-                },
-                buttons: {
-                    "Fechar": function() {
-                        $(this).dialog( "close" );
-                        return false;
-                    }
-                }
-            });
-        }
+        });
     });
-});
 
-/* Alterar dados do aluno */
-$('#alterarDadosAluno').live('click',function(){
+    $('#enviarMensagem').click(function(){
 
-    $('body').append('<div id="alertaDados"></div>');
+        $('body').append('<div id="dialog-message"></div>');
 
-    var form = $('form[name=formAluno]');
-    $.ajax({
-        url : form.attr('action'),
-        data : form.serialize(),
-        type: 'POST',
-        dataType: "json",
-        success : function(resposta) {
-            //console.log(resposta.sucesso);
-            //console.log(resposta.valor);
-            if(resposta && resposta.sucesso == true){
-                $('#alertaDados').html(resposta.mensagem);
-                //alert(resposta.mensagem);
-            }else{
-                //alert(resposta.mensagem);
-                $('#alertaDados').html(resposta.mensagem);
+        var form = $('form[name=formAjuda]');
+        $.ajax({
+            url : form.attr('action'),
+            data : form.serialize(),
+            type: 'POST',
+            dataType: "json",
+            success : function(resposta) {
+                param = {'idDiv':"#dialog-message",
+                         'largura':400,
+                         'altura':200,
+                         'titulo':"Alerta"};
+
+                alertaDialog(resposta,param);
             }
-            // Dialog
-            $('#alertaDados').dialog({
-                resizable: false,
-                //width:'450',
-                //height:'360',
-                title: 'Alerta',
-                modal: true,
-                close: function(){
-                    $('#alertaDados').remove();
-                },
-                buttons: {
-                    "Fechar": function() {
-                        $(this).dialog( "close" );
-                        return false;
-                    }
-                }
-            });
-        }
+        });
+    });
+
+    /* Alterar dados do aluno */
+    $('#alterarDadosAluno').click(function(){
+
+        $('body').append('<div id="dialog-message"></div>');
+
+        var form = $('form[name=formAluno]');
+        $.ajax({
+            url : form.attr('action'),
+            data : form.serialize(),
+            type: 'POST',
+            dataType: "json",
+            success : function(resposta) {
+                param = {'idDiv':"#dialog-message",
+                         'largura':400,
+                         'altura':200,
+                         'titulo':"Alerta"};
+
+                alertaDialog(resposta,param);
+            }
+        });
     });
 });

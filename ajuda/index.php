@@ -1,4 +1,5 @@
-<h2>Ajuda</h2> <p>
+<h2>Ajuda</h2> 
+<p>
   <form name="formAjuda" class="form-horizontal" method="POST" action="ajuda/enviar.php">
     
     <div class="control-group">
@@ -31,7 +32,7 @@
         <textarea name="mensagem" id="mensagem" class="input-large" rows="7" required></textarea>
         <br/>
         <br/>
-        <button class="btn btn-large btn-primary" type="submit">Enviar mensagem</button>
+        <button id="enviarMensagem" class="btn btn-large btn-primary" type="button">Enviar mensagem</button>
       </div>
     </div>
 

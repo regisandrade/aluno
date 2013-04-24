@@ -51,7 +51,7 @@ if($verificarDepoimento['sucesso']){
       <textarea name="depoimento" id="depoimento" placeholder="Escrever depoimento" rows="5"></textarea>
       <br/>
       <br/>
-      <button id="gravarDepoimento" class="btn btn-large btn-primary <?php echo $desabilitarBotao ?>" type="buttom">Gravar Depoimento</button>
+      <button id="gravarDepoimento" class="btn btn-large btn-primary <?php echo $desabilitarBotao ?>" type="button">Gravar Depoimento</button>
     </div>
   </div>
 </form>
