@@ -14,15 +14,15 @@ class Depoimento{
                              ,:codgCurso
                              ,:depoimento
                              ,:data
-                             ,status)";
-
+                             ,:status)";
+               
                $rs = $pdo->prepare($sql);
                $rs->execute(array(':aluno'=>$parametros['idNumero'],
                                   ':codgCurso'=>$parametros['codgCurso'],
                                   ':depoimento'=>$parametros['depoimento'],
                                   ':data'=>date('Y-m-d'),
                                   ':status'=>0));
-               
+
                //var_dump($rs, $rs->errorInfo());
 
                if(!$rs){

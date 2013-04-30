@@ -20,6 +20,7 @@ function alertaDialog(resposta,param){
 }
 
 $(document).ready(function() {
+    
     /* Gravra depoimento do aluno */
     $('#gravarDepoimento').click(function(){
 
@@ -36,8 +37,13 @@ $(document).ready(function() {
                          'largura':400,
                          'altura':200,
                          'titulo':"Alerta"};
-
+                
+                $('#depoimento').val('');
+                $('#depoimento').focus();
+                
+                
                 alertaDialog(resposta,param);
+                
             }
         });
     });
