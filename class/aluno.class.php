@@ -179,6 +179,5 @@ class Aluno{
             //return $arrDados;
             echo json_encode($resposta);
         }
-    }
 } // Fim classe
 ?>
