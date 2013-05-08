@@ -63,7 +63,7 @@ class GerarDeclaracaoEstudante extends FPDF{
 
     $this->MultiCell(200,5, utf8_decode($conteudo), 0, 'J');
 
-    $this->Cell(200,5, 'Informamos ainda que o curso '.$frase2.' de '.$reg_consulta['Data_Inicial'].' a '.$reg_consulta['Data_FInal'], 0, 1, 'L');
+    $this->Cell(200,5, 'Informamos ainda que o curso '.$frase2.' de '.$listaDatas['dataInicial'].' a '.$listaDatas['dataFinal'], 0, 1, 'L');
 
     $this->Ln(15);
     $this->Cell(200,5, 'Por ser verdade, firmamos o presente documento.', 0, 1, 'C');

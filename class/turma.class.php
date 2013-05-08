@@ -11,7 +11,7 @@ class Turma{
                     WHERE 
                            Turma = ?
                     GROUP BY 
-                           Descricao";
+                           Nome";
 			
     		$rs = $pdo->prepare($sql);
         	$rs->execute(array($parametros['turma']));
