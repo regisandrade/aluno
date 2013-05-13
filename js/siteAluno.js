@@ -20,6 +20,8 @@ function alertaDialog(resposta,param){
 }
 
 $(document).ready(function() {
+
+    ('#ver-aviso').hide();
     
     /* Gravra depoimento do aluno */
     $('#gravarDepoimento').click(function(){
@@ -113,3 +115,8 @@ $(document).ready(function() {
         });
     });
 });
+
+function verAviso(cod){
+    var codAviso = '#aviso'+cod;
+    $(codAviso).show();
+}
