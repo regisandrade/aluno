@@ -1,5 +1,6 @@
       <?php
       session_start();
+      require_once "../lib/util.class.php";
       ?>
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
@@ -64,6 +65,7 @@
             echo "<p class=\"error\">Nenhum data para este mês.</p>";
           }else{ 
             foreach ($rsCronograma as $value) {
+              echo Util::getAno($value['Data_1'])."<br>";
           ?>
               <i class="icon-circle-arrow-right"></i>&nbsp;<?php echo utf8_encode($value['Disciplina']); ?>&nbsp;Data(s):&nbsp;<?php echo $value['Data_1']; ?>&nbsp;-&nbsp;<?php echo $value['Data_2']; ?>
               &nbsp;-&nbsp;<?php echo $value['Data_3']; ?>&nbsp;-&nbsp;<?php echo $value['Data_4']; ?>&nbsp;-&nbsp;<?php echo $value['Data_5']; ?>&nbsp;-&nbsp;<?php echo $value['Data_6']; ?><br>
