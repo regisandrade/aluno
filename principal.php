@@ -14,11 +14,7 @@
       $param['numLimite'] = 5;
       $listaAvisos = $avisoDAO->pesquisar($bd,$param);
       unset($param);
-      ?>
-      <div class="alert alert-success">
 
-      </div>
-      <?php
       if (is_array($listaAvisos)) {
         foreach ($listaAvisos as $value) {
           echo "<div class=\"alert alert-success ver-aviso\" id=\"aviso".$value['Codg_Aviso']."\">";
@@ -39,13 +35,11 @@
           <p class="error">Nenhum aviso cadastrado</p>
           <?php 
           }else{ 
-            //echo "<ul>";
             foreach ($listaAvisos as $value) {
           ?>
               <i class="icon-circle-arrow-right"></i>&nbsp;<a href="#" onClick="verAviso(<?php echo $value['Codg_Aviso'] ?>)"><?php echo utf8_encode($value['Titulo']); ?></a>&nbsp;-&nbsp;<small><?php echo $value['Data']; ?></small><br>
           <?php 
             }
-            //echo "</ul>";
           ?>
           <p><a class="btn" href="home.php?pag=avisos&arq=index.php">Mais avisos &raquo;</a></p>
           <?php
@@ -56,10 +50,27 @@
           <h2>Vagas</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
           <p><a class="btn" href="#">Mais vagas &raquo;</a></p>
-       </div>
+        </div>
         <div class="span4">
           <h2>Cronograma</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">Mais cronogramas &raquo;</a></p>
+          <?php
+          require_once "class/cronograma.class.php";
+          $cronogramaDAO = new Cronograma();
+          $param['turma'] = $_SESSION['turma'];
+          $rsCronograma = $cronogramaDAO->pesquisar($bd,$param);
+          unset($param);
+
+          if(!is_array($rsCronograma)){ 
+            echo "<p class=\"error\">Nenhum data para este mês.</p>";
+          }else{ 
+            foreach ($rsCronograma as $value) {
+          ?>
+              <i class="icon-circle-arrow-right"></i>&nbsp;<?php echo utf8_encode($value['Disciplina']); ?>&nbsp;Data(s):&nbsp;<?php echo $value['Data_1']; ?>&nbsp;-&nbsp;<?php echo $value['Data_2']; ?>
+              &nbsp;-&nbsp;<?php echo $value['Data_3']; ?>&nbsp;-&nbsp;<?php echo $value['Data_4']; ?>&nbsp;-&nbsp;<?php echo $value['Data_5']; ?>&nbsp;-&nbsp;<?php echo $value['Data_6']; ?><br>
+          <?php 
+            }
+            echo "<p><a class=\"btn\" href=\"home.php?pag=cronograma&arq=index.php\">Mais cronogramas &raquo;</a></p>";
+          } 
+          ?>
         </div>
       </div>

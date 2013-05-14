@@ -64,7 +64,7 @@ class Cronograma{
 	*
 	*/
 	public function pesquisarAgendaMesAtual($pdo, $parametros=null){
-				try {
+		try {
 			$sql = "SELECT
 					       *
 					FROM
