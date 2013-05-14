@@ -32,6 +32,9 @@ $bd = new myDB();
         padding-top: 60px;
         padding-bottom: 40px;
       }
+      canvas {
+        -ms-touch-action: double-tap-zoom;
+      }
     </style>
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
