@@ -6,7 +6,6 @@
 *
 */
 
-require_once "class/aluno.class.php";
 $alunoDAO = new Aluno();
 
 $parametros['idNumero'] = $_SESSION['idNumero'];

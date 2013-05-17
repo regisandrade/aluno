@@ -5,9 +5,7 @@
 *  @autor Regis Andrade
 *
 */
-session_start();
 
-require_once "class/cronograma.class.php";
 $cronogramaDAO = new Cronograma();
 $parametros['turma'] = $_SESSION['turma'];
 $listaCronogramas = $cronogramaDAO->pesquisar($bd,$parametros);

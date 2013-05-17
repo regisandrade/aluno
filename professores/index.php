@@ -5,7 +5,6 @@
 *  @autor Regis Andrade
 *
 */
-require_once "class/professores.class.php";
 $professoresDAO = new Professores();
 
 $parametros['turma'] = $_SESSION['turma'];

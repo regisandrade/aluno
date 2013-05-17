@@ -6,7 +6,6 @@
 *
 */
 
-require_once "class/aviso.class.php";
 $avisoDAO = new Aviso();
 $listaAvisos = $avisoDAO->pesquisar($bd);
 ?>

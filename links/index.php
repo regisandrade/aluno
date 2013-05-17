@@ -6,7 +6,6 @@
 *
 */
 
-require_once "class/links.class.php";
 $linksDAO = new Links();
 $parametros['order'] = "Tipo";
 $listaLinks = $linksDAO->pesquisar($bd,$parametros);

@@ -6,7 +6,6 @@
 *
 */
 
-require_once "class/materiais.class.php";
 $materiaisDAO = new Materiais();
 $parametros['turma'] = $_SESSION['turma'];
 $listaMateriais = $materiaisDAO->pesquisar($bd,$parametros);

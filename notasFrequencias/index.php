@@ -6,7 +6,6 @@
 *
 */
 
-require_once "class/notasFrequencias.class.php";
 $notasFrequenciasDAO = new NotasFrequencias();
 
 $parametros['ano']      = $_SESSION['ano'];

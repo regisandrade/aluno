@@ -6,7 +6,6 @@
 *
 */
 
-require_once "class/depoimento.class.php";
 $depoimentoDAO = new Depoimento();
 $parametros['idNumero'] = $_SESSION['idNumero'];
 $parametros['idCurso']  = $_SESSION['idCurso'];

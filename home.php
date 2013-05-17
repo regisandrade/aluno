@@ -8,7 +8,13 @@ $_SESSION['nomeAluno'] = "Ana Marta Rocha";
 $_SESSION['ano']       = 2005;
 
 require_once "../lib/myDB.class.php";
-$bd = new myDB();
+$param['sistema'] = 'ipecon';
+$pdo = new myDB($param);
+
+$bd = $pdo->getInstance($param);
+unset($param);
+
+include_once("../lib/config.php");
 ?>
 <!DOCTYPE html>
 <html>
