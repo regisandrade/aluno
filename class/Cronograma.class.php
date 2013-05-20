@@ -1,5 +1,5 @@
 <?php
-class Cronograma{
+class Cronograma {
 
 	public function pesquisar($pdo,$parametros=null){
 		try {

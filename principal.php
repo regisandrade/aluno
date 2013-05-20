@@ -10,7 +10,6 @@
 
       <!-- Example row of columns -->
       <?php
-      require_once "class/aviso.class.php";
       $avisoDAO = new Aviso();
       $param['numLimite'] = 5;
       $listaAvisos = $avisoDAO->pesquisar($bd,$param);
@@ -18,15 +17,15 @@
 
       if (is_array($listaAvisos)) {
         foreach ($listaAvisos as $value) {
-          echo "<div class=\"alert alert-success ver-aviso\" id=\"aviso".$value['Codg_Aviso']."\">";
-          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
-          echo "<strong>".$value['Titulo']."</strong><br>";
-          echo $value['Descricao'];
+          echo "<div class=\"alert alert-success ver-aviso\" id=\"aviso".$value['CodigoAviso']."\">\n";
+          echo "\t<a class=\"close\" data-hide=\"alert\">×</a>\n";
+          echo "\t<strong>".utf8_encode($value['Titulo'])."</strong><br>";
+          echo utf8_encode($value['Descricao']);
           echo "</div>";
           echo "<br>";
         }
       }
-      ?>      
+      ?>
       <div class="row">
         <div class="span4">
           <h2>Avisos</h2>
@@ -38,7 +37,7 @@
           }else{ 
             foreach ($listaAvisos as $value) {
           ?>
-              <i class="icon-circle-arrow-right"></i>&nbsp;<a href="#" onClick="verAviso(<?php echo $value['Codg_Aviso'] ?>)"><?php echo utf8_encode($value['Titulo']); ?></a>&nbsp;-&nbsp;<small><?php echo $value['Data']; ?></small><br>
+              <i class="icon-circle-arrow-right"></i>&nbsp;<a href="#" onClick="verAviso(<?php echo $value['CodigoAviso'] ?>)"><?php echo utf8_encode($value['Titulo']); ?></a>&nbsp;-&nbsp;<small><?php echo $value['Data']; ?></small><br>
           <?php 
             }
           ?>
@@ -55,7 +54,6 @@
         <div class="span4">
           <h2>Cronograma</h2>
           <?php
-          require_once "class/cronograma.class.php";
           $cronogramaDAO = new Cronograma();
           $param['turma'] = $_SESSION['turma'];
           $rsCronograma = $cronogramaDAO->pesquisar($bd,$param);
