@@ -25,9 +25,14 @@ $listaAvisos = $avisoDAO->pesquisar($bd);
     </tr>
     <?php }else{ 
       foreach ($listaAvisos as $value) {
+        $resposta = array("sucesso"=>true,
+                          "mensagem"=>utf8_encode($value['Descricao']));
+        $param    = array("titulo"=>utf8_encode($value['Titulo']),
+                          "largura"=>318,
+                          "altura"=>250);
     ?>
     <tr>
-      <td><a href="#" onClick="Abrir_Aviso(<?php echo $value['Codg_Aviso'] ?>,318,250)"><?php echo utf8_encode($value['Titulo']); ?></a></td>
+      <td><a href="#" onClick="alertaDialog(<?php echo $resposta ?>,<?php echo $param ?>)"><?php echo utf8_encode($value['Titulo']); ?></a></td>
       <td><?php echo $value['Data']; ?></td>
     </tr>
     <?php }
