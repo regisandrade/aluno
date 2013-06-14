@@ -1,18 +1,20 @@
 <?php
 // Criando uma conexão com o bd Banco de oportunidade
-require_once "../../lib/myDB.class.php";
+require_once "../lib/myDB.class.php";
 $param['sistema'] = 'bcoOportunidade';
 $pdoBco = new myDB($param);
 $bdBcoOportunidade = $pdoBco->getInstance($param);
 unset($param);
 
-
 $vagaDAO = new Vaga();
 $param['idNumero'] = $_SESSION['idNumero'];
-$param['dataHoje'] = date('Y-m-d H:i:s');
-$param['order'] = "VAG.DATA_INICIO_VIGENCIA";
+//$param['dataHoje'] = date('Y-m-d H:i:s');
+$param['order']    = "VAG.DATA_INICIO_VIGENCIA";
 $rsVagas = $vagaDAO->pesquisar($bdBcoOportunidade,$param);
 unset($param);
+
+echo "<pre>";
+print_r($rsVagas);
 ?>
 <h2>Vagas anunciadas</h2>
 <?php

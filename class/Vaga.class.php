@@ -37,22 +37,22 @@ class Vaga {
 					WHERE
 					       1=1";
 			if($param['id']){
-				$sql .= "\n AND ID = ".$param['id'];
+				$sql .= "\n AND ID = {$param['id']}";
 			}
 			
 			if($param['idEmpresa']){
-				$sql .= "\n AND ID_EMPRESA = ".$param['idEmpresa'];
+				$sql .= "\n AND ID_EMPRESA = {$param['idEmpresa']}";
 			}
 
 			if($param['dataHoje']){
-				$sql .= "\n'".$param['dataHoje']."' between VAG.DATA_INICIO_VIGENCIA 
-													  and VAG.DATA_FINAL_VIGENCIA";
+				$sql .= "\n AND '{$param['dataHoje']}' between VAG.DATA_INICIO_VIGENCIA 
+														   and VAG.DATA_FINAL_VIGENCIA";
 			}
 
 			if($param['order']){
-				$sql .= "\n ORDER BY ".$param['order'];
+				$sql .= "\n ORDER BY {$param['order']}";
 			}
-
+			
 			$rs = $pdo->prepare($sql);
 			$count = $rs->execute();
 
@@ -79,6 +79,7 @@ class Vaga {
 					$arrDados[$conta]['status'] = $registro->STATUS;
 
 					$conta++;
+				}
 			}
 
 			$resposta['valores'] = $arrDados;
