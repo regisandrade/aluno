@@ -1,6 +1,6 @@
       <?php
       session_start();
-      require_once "../lib/Util.class.php";
+      require_once "../lib/util.class.php";
       ?>
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
