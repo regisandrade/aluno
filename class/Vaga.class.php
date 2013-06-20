@@ -50,9 +50,9 @@ class Vaga {
 			}
 
 			if($param['order']){
-				$sql .= "\n ORDER BY {$param['order']}";
+				$sql .= "\n ORDER BY \n\t {$param['order']}";
 			}
-			
+						
 			$rs = $pdo->prepare($sql);
 			$count = $rs->execute();
 
@@ -81,13 +81,14 @@ class Vaga {
 					$conta++;
 				}
 			}
-
+			
 			$resposta['valores'] = $arrDados;
 			$resposta['sucesso'] = true;
 
-		} catch (Exception $e) {
-			$resposta['mensagem'] = $e;
-			$resposta['sucesso'] = false;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			$resposta['mensagem'] = $e->getMessage();
+			$resposta['sucesso']  = false;
 		}
 
 		$pdo = null;

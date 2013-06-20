@@ -2,7 +2,7 @@
 require_once "../lib/Menu.class.php";
 $menu = new Menu();
 
-echo "<a class=\"brand\" href=\"#\">Área do aluno</a>\n
+echo "<a class=\"brand\" href=\"#\">IPECON - Área do aluno</a>\n
 <div class=\"nav-collapse collapse\">\n
 \t<ul class=\"nav\">\n";
 $conta = 1;

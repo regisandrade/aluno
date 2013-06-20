@@ -8,10 +8,13 @@ $_SESSION['nomeAluno'] = "Ana Marta Rocha";
 $_SESSION['ano']       = 2005;
 
 require_once "../lib/myDB.class.php";
-$param['sistema'] = 'ipecon';
+if (isset($_REQUEST['pag']) && $_REQUEST['pag'] == 'bcoOportunidade') {
+  $param['sistema'] = 'bcoOportunidade';
+} else {
+  $param['sistema'] = 'ipecon';
+}
 $pdo = new myDB($param);
-
-$bd = $pdo->getInstance($param);
+$bd  = $pdo->getInstance($param);
 unset($param);
 
 include_once("../lib/config.php");
@@ -63,9 +66,9 @@ include_once("../lib/config.php");
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="icon-bar">[L]</span>
+            <span class="icon-bar">[T]</span>
+            <span class="icon-bar">[F]</span>
           </a>
           <?php include "menu.php"; ?>
         </div>

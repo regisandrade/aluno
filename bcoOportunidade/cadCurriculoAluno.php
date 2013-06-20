@@ -1,6 +1,4 @@
 <?php
-// Criando uma conexão com o bd Banco de oportunidade
-//require_once "../lib/myDB.class.php";
 $param['sistema'] = 'bcoOportunidade';
 $pdoBco = new myDB($param);
 $bdBcoOportunidade = $pdoBco->getInstance($param);
@@ -352,7 +350,7 @@ $objAluno = (object) $objAluno;
 
     <div class="control-group">
         <label class="control-label" for="dataAdmissao_1">Data de admissão:</label>
-        <div class="controls controls-row">
+        <div class="controls">
         	<input type="text" id="dataAdmissao_1" name="dataAdmissao_1" class="input-small" maxlength="10" value="<?php echo ($registroCurriculo && $registroCurriculo->DATA_ADMISSAO_1 != '') ? Util::formataData($registroCurriculo->DATA_DEMISSAO_1,'-','/') : ''; ?>" /> <img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"></td>
     	</div>
     </div>
