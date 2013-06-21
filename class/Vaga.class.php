@@ -152,11 +152,11 @@ class Vaga {
 										':status'=>'I'));
 
 			if($count === false){
-				$resposta['mensagem'] = "Erro ao excluir a vaga.";
+				$resposta['mensagem'] = "Erro ao incluir a vaga.";
 				$resposta['caminho']  = $param['caminho'] ? $param['caminho'] : '';
 				$resposta['sucesso']  = false;
 			}else{
-				$resposta['mensagem'] = "Vaga excluída com sucesso.";
+				$resposta['mensagem'] = "Vaga incluída com sucesso.";
 				$resposta['caminho']  = $param['caminho'] ? $param['caminho'] : '';
 				$resposta['sucesso']  = true;
 			}
