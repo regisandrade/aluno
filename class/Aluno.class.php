@@ -39,7 +39,7 @@ class Aluno{
     		$rs = $pdo->prepare($sql);
         	$rs->execute(array($parametros['idNumero']));
 
-        	//var_dump($registro, $rs->errorInfo());
+        	var_dump($registro, $rs->errorInfo());
 
         	if(!$rs){
         		$resposta['mensagem'] = "Nenhum registro encontrado.";

@@ -1,12 +1,7 @@
 <?php
-$param['sistema'] = 'bcoOportunidade';
-$pdoBco = new myDB($param);
-$bdBcoOportunidade = $pdoBco->getInstance($param);
-unset($param);
-
-$alunoDAO = new Aluno();
+$curriculoAluno = new Curriculo();
 $param['idNumero'] = $_SESSION['idNumero'];
-$objAluno = $alunoDAO->pesquisar($bdBcoOportunidade,$param);
+$objAluno = $curriculoAluno->pesquisar($pdo,$param);
 unset($param);
 
 if(is_array($objAluno)){
@@ -14,6 +9,24 @@ if(is_array($objAluno)){
 }
 // Convertendo o array em objeto
 $objAluno = (object) $objAluno;
+
+echo "<pre>";
+print_r($objAluno->idCurriculo);
+echo "</pre>";
+
+$param['sistema'] = 'ipecon';
+$pdo = new myDB($param);
+$bd1  = $pdo->getInstance($param);
+
+$alunoDAO = new Aluno();
+$param['idNumero'] = $_SESSION['idNumero'];
+$objAluno = $alunoDAO->pesquisar($bd1,$param);
+unset($param);
+
+echo "<pre>";
+print_r($objAluno);
+echo "</pre>";
+die;
 
 ?>
 <h2>Atualizar seu curr&iacute;culo</h2>
