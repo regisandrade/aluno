@@ -2,7 +2,7 @@
 $vagaDAO = new Vaga();
 //$param['dataHoje'] = date('Y-m-d H:i:s');
 $param['order']    = "DATA_INICIO_VIGENCIA";
-$rsVagas = $vagaDAO->pesquisar($pdo,$param);
+$rsVagas = $vagaDAO->pesquisar($bd,$param);
 unset($param);
 
 ?>

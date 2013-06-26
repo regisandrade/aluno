@@ -29,11 +29,13 @@ class Aviso{
       if($parametros['numLimite']){
           $sql .= " \n LIMIT ".$parametros['numLimite'];
       }
-
+      
 			$rs = $pdo->prepare($sql);
       $count = $rs->execute();
           	
-      //var_dump($count, $rs->errorInfo());
+      //echo "<pre>";
+      //var_dump($registro, $rs->errorInfo());
+      //echo "</pre>";
 
       if($count === false){
       	$resposta['mensagem'] = "Nenhum registro encontrado.";

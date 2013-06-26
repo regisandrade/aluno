@@ -13,8 +13,7 @@ if (isset($_REQUEST['pag']) && $_REQUEST['pag'] == 'bcoOportunidade') {
 } else {
   $param['sistema'] = 'ipecon';
 }
-$pdo = new myDB($param);
-$bd  = $pdo->getInstance($param);
+$bd = myDB::getInstance($param);
 unset($param);
 
 include_once("../lib/config.php");
@@ -34,8 +33,26 @@ include_once("../lib/config.php");
 
     <script src="js/siteAluno.js"></script>
 
+    <script src="bootstrap/js/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript">
+      $(function() {
+        
+        $('#dataNascimento').datepicker();
+        $('#dataExpedicaoRg').datepicker();
+        $('#dataPisPasep').datepicker();
+        $('#vencimentoHabilitacao').datepicker();
+        $('#dataAdmissao_1').datepicker();
+        $('#dataDemissao_1').datepicker();
+        $('#dataAdmissao_2').datepicker();
+        $('#dataDemissao_2').datepicker();
+        
+      });
+    </script>
+
     <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/datepicker.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
