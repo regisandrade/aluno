@@ -115,6 +115,27 @@ $(document).ready(function() {
         });
     });
 
+    /* Alterar curriculo */
+    $('#btnGravarCurriculo').click(function(){
+
+        $('body').append('<div id="dialog-message"></div>');
+
+        $.ajax({
+            url : "home.php?pag=bcoOportunidade&arq=alterarCurriculoAluno.php",
+            data : $('#formCurriculo').serialize(),
+            type: 'POST',
+            dataType: "json",
+            success : function(resposta) {
+                param = {'idDiv':"#dialog-message",
+                         'largura':400,
+                         'altura':200,
+                         'titulo':"Alerta"};
+
+                alertaDialog(resposta,param);
+            }
+        });
+    });
+
     // Esconder a div de alert do aviso
     $("[data-hide]").on("click", function(){
         $("." + $(this).attr("data-hide")).hide();

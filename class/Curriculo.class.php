@@ -67,6 +67,9 @@ class Curriculo {
                   ,ATIVIDADE_EXERCIDA_2
                   ,SALARIO_2
                   ,DATA_CADASTRO
+                  ,FORMACAO_INSTITUCAO
+                  ,FORMACAO_CURSO
+                  ,FORMACAO_ANO
 					FROM
                    curriculos
 					WHERE
@@ -103,41 +106,44 @@ class Curriculo {
 					$arrDados[$conta]['dataNascimento'] = $registro->DATA_NASCIMENTO;
 					$arrDados[$conta]['cidadeNascimento'] = $registro->CIDADE_NASCIMENTO;
 					$arrDados[$conta]['ufNascimento'] = $registro->UF_NASCIMENTO;
-					$arrDados[$conta]['estadoCivel'] = $registro->ESTADO_CIVIL;
+					$arrDados[$conta]['estadoCivil'] = $registro->ESTADO_CIVIL;
 					$arrDados[$conta]['rg'] = $registro->RG;
-					$arrDados[$conta]['organcaoExpedidor'] = $registro->ORGAO_EXPEDIDOR;
+					$arrDados[$conta]['orgaoExpedidor'] = $registro->ORGAO_EXPEDIDOR;
 					$arrDados[$conta]['dataExpedicaoRg'] = $registro->DATA_EXPEDICAO_RG;
 					$arrDados[$conta]['cpf'] = $registro->CPF;
 					$arrDados[$conta]['carteiraReservista'] = $registro->CARTEIRA_RESERVISTA;
-					$arrDados[$conta]['pisPasep'] = $registro->PIS_PASEP;
-					$arrDados[$conta]['dataCadastroPisPasep'] = $registro->DATA_CADASTRO_PIS_PASEP;
-					$arrDados[$conta]['tituloEleitor'] = $registro->TITULO_ELEITOR;
+					$arrDados[$conta]['numeroPisPasep'] = $registro->PIS_PASEP;
+					$arrDados[$conta]['dataPisPasep'] = $registro->DATA_CADASTRO_PIS_PASEP;
+					$arrDados[$conta]['numeroTituloEleitor'] = $registro->TITULO_ELEITOR;
 					$arrDados[$conta]['zona'] = $registro->ZONA;
 					$arrDados[$conta]['secao'] = $registro->SECAO;
-					$arrDados[$conta]['habitacao'] = $registro->HABILITACAO;
+					$arrDados[$conta]['numeroHabilitacao'] = $registro->HABILITACAO;
 					$arrDados[$conta]['categoria'] = $registro->CATEGORIA;
-					$arrDados[$conta]['validade'] = $registro->VALIDADE;
+					$arrDados[$conta]['vencimentoHabilitacao'] = $registro->VALIDADE;
 					$arrDados[$conta]['areaInteresse'] = $registro->AREA_INTERESSE;
 					$arrDados[$conta]['objetivoProfissional'] = $registro->OBJETIVO_PROFISSIONAL;
 					$arrDados[$conta]['disponibilidadeHorario'] = $registro->DISPONIBILIDADE_HORARIO;
 					$arrDados[$conta]['msn'] = $registro->MSN;
 					$arrDados[$conta]['twitter'] = $registro->TWITTER;
 					$arrDados[$conta]['facebook'] = $registro->FACEBOOK;
-					$arrDados[$conta]['nomeEmpresa1'] = $registro->NOME_EMPRESA_1;
-					$arrDados[$conta]['atividadeEmpresa1'] = $registro->ATIVIDADE_EMPRESA_1;
-					$arrDados[$conta]['dataAdmissao1'] = $registro->DATA_ADMISSAO_1;
-					$arrDados[$conta]['dataDemissao1'] = $registro->DATA_DEMISSAO_1;
-					$arrDados[$conta]['funcaoExercida1'] = $registro->FUNCAO_EXERCIDA_1;
-					$arrDados[$conta]['atividadeExercida1'] = $registro->ATIVIDADE_EXERCIDA_1;
-					$arrDados[$conta]['salario1'] = $registro->SALARIO_1;
-					$arrDados[$conta]['nomeEmpresa2'] = $registro->NOME_EMPRESA_2;
-					$arrDados[$conta]['atividadeEmpresa2'] = $registro->ATIVIDADE_EMPRESA_2;
-					$arrDados[$conta]['dataAdmissao2'] = $registro->DATA_ADMISSAO_2;
-					$arrDados[$conta]['dataDemissao2'] = $registro->DATA_DEMISSAO_2;
-					$arrDados[$conta]['funcaoExercida2'] = $registro->FUNCAO_EXERCIDA_2;
-					$arrDados[$conta]['atividadeExercida2'] = $registro->ATIVIDADE_EXERCIDA_2;
-					$arrDados[$conta]['salario2'] = $registro->SALARIO_2;
-					$arrDados[$conta]['dataCadastro'] = $registro->DATA_CADASTRO;
+          $arrDados[$conta]['instituicao'] = $registro->FORMACAO_INSTITUCAO;
+          $arrDados[$conta]['cursoGraduacao'] = $registro->FORMACAO_CURSO;
+          $arrDados[$conta]['anoConclusao'] = $registro->FORMACAO_ANO;
+					$arrDados[$conta]['nomeEmpresa_1'] = $registro->NOME_EMPRESA_1;
+					$arrDados[$conta]['atividadeEmpresa_1'] = $registro->ATIVIDADE_EMPRESA_1;
+					$arrDados[$conta]['dataAdmissao_1'] = $registro->DATA_ADMISSAO_1;
+					$arrDados[$conta]['dataDemissao_1'] = $registro->DATA_DEMISSAO_1;
+					$arrDados[$conta]['funcaoExercida_1'] = $registro->FUNCAO_EXERCIDA_1;
+					$arrDados[$conta]['atividadeExercida_1'] = $registro->ATIVIDADE_EXERCIDA_1;
+					$arrDados[$conta]['salario_1'] = $registro->SALARIO_1;
+					$arrDados[$conta]['nomeEmpresa_2'] = $registro->NOME_EMPRESA_2;
+					$arrDados[$conta]['atividadeEmpresa_2'] = $registro->ATIVIDADE_EMPRESA_2;
+					$arrDados[$conta]['dataAdmissao_2'] = $registro->DATA_ADMISSAO_2;
+					$arrDados[$conta]['dataDemissao_2'] = $registro->DATA_DEMISSAO_2;
+					$arrDados[$conta]['funcaoExercida_2'] = $registro->FUNCAO_EXERCIDA_2;
+					$arrDados[$conta]['atividadeExercida_2'] = $registro->ATIVIDADE_EXERCIDA_2;
+					$arrDados[$conta]['salario_2'] = $registro->SALARIO_2;
+					$arrDados[$conta]['dataCadastro'] = $registro->DATA_CADASTRO;          
 
 					$conta++;
 				}
@@ -164,168 +170,175 @@ class Curriculo {
 		try {
 			$sql = "insert into
                     curriculos(
-                             NOME
-                            ,SEXO
-                            ,ENDERECO
-                            ,BAIRRO
-                            ,CIDADE
-                            ,UF
-                            ,CEP
-                            ,TELEFONE_FIXO
-                            ,TELEFONE_CELULAR
-                            ,EMAIL
-                            ,DATA_NASCIMENTO
-                            ,CIDADE_NASCIMENTO
-                            ,UF_NASCIMENTO
-                            ,ESTADO_CIVIL
-                            ,RG
-                            ,ORGAO_EXPEDIDOR
-                            ,DATA_EXPEDICAO_RG
-                            ,CPF
-                            ,CARTEIRA_RESERVISTA
-                            ,PIS_PASEP
-                            ,DATA_CADASTRO_PIS_PASEP
-                            ,TITULO_ELEITOR
-                            ,ZONA
-                            ,SECAO
-                            ,HABILITACAO
-                            ,CATEGORIA
-                            ,VALIDADE
-                            ,AREA_INTERESSE
-                            ,OBJETIVO_PROFISSIONAL
-                            ,DISPONIBILIDADE_HORARIO
-                            ,MSN
-                            ,TWITTER
-                            ,FACEBOOK
-                            ,NOME_EMPRESA_1
-                            ,ATIVIDADE_EMPRESA_1
-                            ,DATA_ADMISSAO_1
-                            ,DATA_DEMISSAO_1
-                            ,FUNCAO_EXERCIDA_1
-                            ,ATIVIDADE_EXERCIDA_1
-                            ,SALARIO_1
-                            ,NOME_EMPRESA_2
-                            ,ATIVIDADE_EMPRESA_2
-                            ,DATA_ADMISSAO_2
-                            ,DATA_DEMISSAO_2
-                            ,FUNCAO_EXERCIDA_2
-                            ,ATIVIDADE_EXERCIDA_2
-                            ,SALARIO_2
-                            ,DATA_CADASTRO
+                           NOME
+                          ,SEXO
+                          ,ENDERECO
+                          ,BAIRRO
+                          ,CIDADE
+                          ,UF
+                          ,CEP
+                          ,TELEFONE_FIXO
+                          ,TELEFONE_CELULAR
+                          ,EMAIL
+                          ,DATA_NASCIMENTO
+                          ,CIDADE_NASCIMENTO
+                          ,UF_NASCIMENTO
+                          ,ESTADO_CIVIL
+                          ,RG
+                          ,ORGAO_EXPEDIDOR
+                          ,DATA_EXPEDICAO_RG
+                          ,CPF
+                          ,CARTEIRA_RESERVISTA
+                          ,PIS_PASEP
+                          ,DATA_CADASTRO_PIS_PASEP
+                          ,TITULO_ELEITOR
+                          ,ZONA
+                          ,SECAO
+                          ,HABILITACAO
+                          ,CATEGORIA
+                          ,VALIDADE
+                          ,AREA_INTERESSE
+                          ,OBJETIVO_PROFISSIONAL
+                          ,DISPONIBILIDADE_HORARIO
+                          ,MSN
+                          ,TWITTER
+                          ,FACEBOOK
+                          ,NOME_EMPRESA_1
+                          ,ATIVIDADE_EMPRESA_1
+                          ,DATA_ADMISSAO_1
+                          ,DATA_DEMISSAO_1
+                          ,FUNCAO_EXERCIDA_1
+                          ,ATIVIDADE_EXERCIDA_1
+                          ,SALARIO_1
+                          ,NOME_EMPRESA_2
+                          ,ATIVIDADE_EMPRESA_2
+                          ,DATA_ADMISSAO_2
+                          ,DATA_DEMISSAO_2
+                          ,FUNCAO_EXERCIDA_2
+                          ,ATIVIDADE_EXERCIDA_2
+                          ,SALARIO_2
+                          ,DATA_CADASTRO
+                          ,FORMACAO_INSTITUCAO
+                          ,FORMACAO_CURSO
+                          ,FORMACAO_ANO
                     ) values (
-                             :idCurriculo
-                            ,:nome
-                           ,:sexo
-                           ,:endereco
-                           ,:bairro
-                           ,:cidade
-                           ,:uf
-                           ,:cep
-                           ,:telefoneFixo
-                           ,:telefoneCelular
-                           ,:email
-                           ,:dataNascimento
-                           ,:cidadeNascimento
-                           ,:ufNascimento
-                           ,:estadoCivel
-                           ,:rg
-                           ,:organcaoExpedidor
-                           ,:dataExpedicaoRg
-                           ,:cpf
-                           ,:carteiraReservista
-                           ,:pisPasep
-                           ,:dataCadastroPisPasep
-                           ,:tituloEleitor
-                           ,:zona
-                           ,:secao
-                           ,:habitacao
-                           ,:categoria
-                           ,:validade
-                           ,:areaInteresse
-                           ,:objetivoProfissional
-                           ,:disponibilidadeHorario
-                           ,:msn
-                           ,:twitter
-                           ,:facebook
-                           ,:nomeEmpresa1
-                           ,:atividadeEmpresa1
-                           ,:dataAdmissao1
-                           ,:dataDemissao1
-                           ,:funcaoExercida1
-                           ,:atividadeExercida1
-                           ,:salario1
-                           ,:nomeEmpresa2
-                           ,:atividadeEmpresa2
-                           ,:dataAdmissao2
-                           ,:dataDemissao2
-                           ,:funcaoExercida2
-                           ,:atividadeExercida2
-                           ,:salario2
-                           ,:dataCadastro)";
+                           :nome
+                          ,:sexo
+                          ,:endereco
+                          ,:bairro
+                          ,:cidade
+                          ,:uf
+                          ,:cep
+                          ,:telefoneFixo
+                          ,:telefoneCelular
+                          ,:email
+                          ,:dataNascimento
+                          ,:cidadeNascimento
+                          ,:ufNascimento
+                          ,:estadoCivel
+                          ,:rg
+                          ,:orgaoExpedidor
+                          ,:dataExpedicaoRg
+                          ,:cpf
+                          ,:carteiraReservista
+                          ,:pisPasep
+                          ,:dataPisPasep
+                          ,:tituloEleitor
+                          ,:zona
+                          ,:secao
+                          ,:habitacao
+                          ,:categoria
+                          ,:validade
+                          ,:areaInteresse
+                          ,:objetivoProfissional
+                          ,:disponibilidadeHorario
+                          ,:msn
+                          ,:twitter
+                          ,:facebook
+                          ,:nomeEmpresa1
+                          ,:atividadeEmpresa1
+                          ,:dataAdmissao1
+                          ,:dataDemissao1
+                          ,:funcaoExercida1
+                          ,:atividadeExercida1
+                          ,:salario1
+                          ,:nomeEmpresa2
+                          ,:atividadeEmpresa2
+                          ,:dataAdmissao2
+                          ,:dataDemissao2
+                          ,:funcaoExercida2
+                          ,:atividadeExercida2
+                          ,:salario2
+                          ,:dataCadastro
+                          ,:formacaoInstituicao
+                          ,:formacaoCurso
+                          ,:formacaoAno)";
 			$rs  = $pdo->prepare($sql);
 			
-			$dataNascimento = Util::formataData($_REQUEST['dataNascimento'],'/','-','USA');
-            $dataExpedicaoRg = Util::formataData($_REQUEST['dataExpedicaoRg'],'/','-','USA');
-            $dataCadastroPisPasep = Util::formataData($_REQUEST['dataCadastroPisPasep'],'/','-','USA');
-            $validade = Util::formataData($_REQUEST['validade'],'/','-','USA');
-            $dataAdmissao1 = Util::formataData($_REQUEST['dataAdmissao1'],'/','-','USA');
-            $dataDemissao1 = Util::formataData($_REQUEST['dataDemissao1'],'/','-','USA');
-            $dataAdmissao2 = Util::formataData($_REQUEST['dataAdmissao2'],'/','-','USA');
-            $dataDemissao2 = Util::formataData($_REQUEST['dataDemissao2'],'/','-','USA');
+			$dataNascimento = Util::formataData($param['dataNascimento'],'/','-','USA');
+      $dataExpedicaoRg = Util::formataData($param['dataExpedicaoRg'],'/','-','USA');
+      $dataPisPasep = Util::formataData($param['dataPisPasep'],'/','-','USA');
+      $validade = Util::formataData($param['vencimentoHabilitacao'],'/','-','USA');
+      $dataAdmissao1 = Util::formataData($param['dataAdmissao_1'],'/','-','USA');
+      $dataDemissao1 = Util::formataData($param['dataDemissao_1'],'/','-','USA');
+      $dataAdmissao2 = Util::formataData($param['dataAdmissao_2'],'/','-','USA');
+      $dataDemissao2 = Util::formataData($param['dataDemissao_2'],'/','-','USA');
 
-            /* @var $salario float */
-            $salario1 = str_replace(',','.',str_replace('.','',$_REQUEST['salario1']));
-            $salario2 = str_replace(',','.',str_replace('.','',$_REQUEST['salario2']));
+      /* @var $salario float */
+      $salario1 = str_replace(',','.',str_replace('.','',$param['salario_1']));
+      $salario2 = str_replace(',','.',str_replace('.','',$param['salario_2']));
 
-			$count = $rs->execute(array(':idCurriculo'=>$param['idCurriculo'],
-										':nome'=>$param['nome'],
-										':sexo'=>$param['sexo'],
-										':endereco'=>$param['endereco'],
-										':bairro'=>$param['bairro'],
-										':cidade'=>$param['cidade'],
-										':uf'=>$param['uf'],
-										':cep'=>$param['cep'],
-										':telefoneFixo'=>$param['telefoneFixo'],
-										':telefoneCelular'=>$param['telefoneCelular'],
-										':email'=>$param['email'],
-										':dataNascimento'=>$dataNascimento,
-										':cidadeNascimento'=>$param['cidadeNascimento'],
-										':ufNascimento'=>$param['ufNascimento'],
-										':estadoCivel'=>$param['estadoCivel'],
-										':rg'=>$param['rg'],
-										':organcaoExpedidor'=>$param['organcaoExpedidor'],
-										':dataExpedicaoRg'=>$dataExpedicaoRg,
-										':cpf'=>$param['cpf'],
-										':carteiraReservista'=>$param['carteiraReservista'],
-										':pisPasep'=>$param['pisPasep'],
-										':dataCadastroPisPasep'=>$dataCadastroPisPasep,
-										':tituloEleitor'=>$param['tituloEleitor'],
-										':zona'=>$param['zona'],
-										':secao'=>$param['secao'],
-										':habitacao'=>$param['habitacao'],
-										':categoria'=>$param['categoria'],
-										':validade'=>$validade,
-										':areaInteresse'=>$param['areaInteresse'],
-										':objetivoProfissional'=>$param['objetivoProfissional'],
-										':disponibilidadeHorario'=>$param['disponibilidadeHorario'],
-										':msn'=>$param['msn'],
-										':twitter'=>$param['twitter'],
-										':facebook'=>$param['facebook'],
-										':nomeEmpresa1'=>$param['nomeEmpresa1'],
-										':atividadeEmpresa1'=>$param['atividadeEmpresa1'],
-										':dataAdmissao1'=>$dataAdmissao1,
-										':dataDemissao1'=>$dataDemissao1,
-										':funcaoExercida1'=>$param['funcaoExercida1'],
-										':atividadeExercida1'=>$param['atividadeExercida1'],
-										':salario1'=>$salario1,
-										':nomeEmpresa2'=>$param['nomeEmpresa2'],
-										':atividadeEmpresa2'=>$param['atividadeEmpresa2'],
-										':dataAdmissao2'=>$dataAdmissao2,
-										':dataDemissao2'=>$dataDemissao2,
-										':funcaoExercida2'=>$param['funcaoExercida2'],
-										':atividadeExercida2'=>$param['atividadeExercida2'],
-										':salario2'=>$salario2,
-										':dataCadastro'=>date('Y-m-d')));
+			$count = $rs->execute(array(':nome'=>$param['nome'],
+                                  ':sexo'=>$param['sexo'],
+                                  ':endereco'=>$param['endereco'],
+                                  ':bairro'=>$param['bairro'],
+                                  ':cidade'=>$param['cidade'],
+                                  ':uf'=>$param['uf'],
+                                  ':cep'=>$param['cep'],
+                                  ':telefoneFixo'=>$param['telefoneFixo'],
+                                  ':telefoneCelular'=>$param['telefoneCelular'],
+                                  ':email'=>$param['email'],
+                                  ':dataNascimento'=>$dataNascimento,
+                                  ':cidadeNascimento'=>$param['cidadeNascimento'],
+                                  ':ufNascimento'=>$param['ufNascimento'],
+                                  ':estadoCivil'=>$param['estadoCivil'],
+                                  ':rg'=>$param['rg'],
+                                  ':orgaoExpedidor'=>$param['orgaoExpedidor'],
+                                  ':dataExpedicaoRg'=>$dataExpedicaoRg,
+                                  ':cpf'=>$param['cpf'],
+                                  ':carteiraReservista'=>$param['carteiraReservista'],
+                                  ':pisPasep'=>$param['numeroPisPasep'],
+                                  ':dataPisPasep'=>$dataPisPasep,
+                                  ':tituloEleitor'=>$param['numeroTituloEleitor'],
+                                  ':zona'=>$param['zona'],
+                                  ':secao'=>$param['secao'],
+                                  ':habitacao'=>$param['numeroHabilitacao'],
+                                  ':categoria'=>$param['categoria'],
+                                  ':validade'=>$validade,
+                                  ':areaInteresse'=>$param['areaInteresse'],
+                                  ':objetivoProfissional'=>$param['objetivoProfissional'],
+                                  ':disponibilidadeHorario'=>$param['disponibilidadeHorario'],
+                                  ':msn'=>$param['msn'],
+                                  ':twitter'=>$param['twitter'],
+                                  ':facebook'=>$param['facebook'],
+                                  ':formacaoInstituicao'=>$param['instituicao'],
+                                  ':formacaoCurso'=>$param['cursoGraduacao'],
+                                  ':formacaoAno'=>$param['anoConclusao'],
+                                  ':nomeEmpresa1'=>$param['nomeEmpresa_1'],
+                                  ':atividadeEmpresa1'=>$param['atividadeEmpresa_1'],
+                                  ':dataAdmissao1'=>$dataAdmissao1,
+                                  ':dataDemissao1'=>$dataDemissao1,
+                                  ':funcaoExercida1'=>$param['funcaoExercida_1'],
+                                  ':atividadeExercida1'=>$param['atividadeExercida_1'],
+                                  ':salario1'=>$salario1,
+                                  ':nomeEmpresa2'=>$param['nomeEmpresa_2'],
+                                  ':atividadeEmpresa2'=>$param['atividadeEmpresa_2'],
+                                  ':dataAdmissao2'=>$dataAdmissao2,
+                                  ':dataDemissao2'=>$dataDemissao2,
+                                  ':funcaoExercida2'=>$param['funcaoExercida_2'],
+                                  ':atividadeExercida2'=>$param['atividadeExercida_2'],
+                                  ':salario2'=>$salario2,
+                                  ':dataCadastro'=>date('Y-m-d')));
 
 			if($count === false){
 				$resposta['mensagem'] = "Erro ao incluir o currículo.";
@@ -353,126 +366,132 @@ class Curriculo {
 	function alterar($pdo,$param=null){
 		try {
 			$sql = "update
-                             curriculos
-					set
-                             NOME                    = ?
-                            ,SEXO                    = ?
-                            ,ENDERECO                = ?
-                            ,BAIRRO                  = ?
-                            ,CIDADE                  = ?
-                            ,UF                      = ?
-                            ,CEP                     = ?
-                            ,TELEFONE_FIXO           = ?
-                            ,TELEFONE_CELULAR        = ?
-                            ,EMAIL                   = ?
-                            ,DATA_NASCIMENTO         = ?
-                            ,CIDADE_NASCIMENTO       = ?
-                            ,UF_NASCIMENTO           = ?
-                            ,ESTADO_CIVIL            = ?
-                            ,RG                      = ?
-                            ,ORGAO_EXPEDIDOR         = ?
-                            ,DATA_EXPEDICAO_RG       = ?
-                            ,CPF                     = ?
-                            ,CARTEIRA_RESERVISTA     = ?
-                            ,PIS_PASEP               = ?
-                            ,DATA_CADASTRO_PIS_PASEP = ?
-                            ,TITULO_ELEITOR          = ?
-                            ,ZONA                    = ?
-                            ,SECAO                   = ?
-                            ,HABILITACAO             = ?
-                            ,CATEGORIA               = ?
-                            ,VALIDADE                = ?
-                            ,AREA_INTERESSE          = ?
-                            ,OBJETIVO_PROFISSIONAL   = ?
-                            ,DISPONIBILIDADE_HORARIO = ?
-                            ,MSN                     = ?
-                            ,TWITTER                 = ?
-                            ,FACEBOOK                = ?
-                            ,NOME_EMPRESA_1          = ?
-                            ,ATIVIDADE_EMPRESA_1     = ?
-                            ,DATA_ADMISSAO_1         = ?
-                            ,DATA_DEMISSAO_1         = ?
-                            ,FUNCAO_EXERCIDA_1       = ?
-                            ,ATIVIDADE_EXERCIDA_1    = ?
-                            ,SALARIO_1               = ?
-                            ,NOME_EMPRESA_2          = ?
-                            ,ATIVIDADE_EMPRESA_2     = ?
-                            ,DATA_ADMISSAO_2         = ?
-                            ,DATA_DEMISSAO_2         = ?
-                            ,FUNCAO_EXERCIDA_2       = ?
-                            ,ATIVIDADE_EXERCIDA_2    = ?
-                            ,SALARIO_2               = ?
-					where
-                             ID = ?";
+                     curriculos
+					    set
+                     NOME                    = ?
+                    ,SEXO                    = ?
+                    ,ENDERECO                = ?
+                    ,BAIRRO                  = ?
+                    ,CIDADE                  = ?
+                    ,UF                      = ?
+                    ,CEP                     = ?
+                    ,TELEFONE_FIXO           = ?
+                    ,TELEFONE_CELULAR        = ?
+                    ,EMAIL                   = ?
+                    ,DATA_NASCIMENTO         = ?
+                    ,CIDADE_NASCIMENTO       = ?
+                    ,UF_NASCIMENTO           = ?
+                    ,ESTADO_CIVIL            = ?
+                    ,RG                      = ?
+                    ,ORGAO_EXPEDIDOR         = ?
+                    ,DATA_EXPEDICAO_RG       = ?
+                    ,CPF                     = ?
+                    ,CARTEIRA_RESERVISTA     = ?
+                    ,PIS_PASEP               = ?
+                    ,DATA_CADASTRO_PIS_PASEP = ?
+                    ,TITULO_ELEITOR          = ?
+                    ,ZONA                    = ?
+                    ,SECAO                   = ?
+                    ,HABILITACAO             = ?
+                    ,CATEGORIA               = ?
+                    ,VALIDADE                = ?
+                    ,AREA_INTERESSE          = ?
+                    ,OBJETIVO_PROFISSIONAL   = ?
+                    ,DISPONIBILIDADE_HORARIO = ?
+                    ,MSN                     = ?
+                    ,TWITTER                 = ?
+                    ,FACEBOOK                = ?
+                    ,NOME_EMPRESA_1          = ?
+                    ,ATIVIDADE_EMPRESA_1     = ?
+                    ,DATA_ADMISSAO_1         = ?
+                    ,DATA_DEMISSAO_1         = ?
+                    ,FUNCAO_EXERCIDA_1       = ?
+                    ,ATIVIDADE_EXERCIDA_1    = ?
+                    ,SALARIO_1               = ?
+                    ,NOME_EMPRESA_2          = ?
+                    ,ATIVIDADE_EMPRESA_2     = ?
+                    ,DATA_ADMISSAO_2         = ?
+                    ,DATA_DEMISSAO_2         = ?
+                    ,FUNCAO_EXERCIDA_2       = ?
+                    ,ATIVIDADE_EXERCIDA_2    = ?
+                    ,SALARIO_2               = ?
+                    ,FORMACAO_INSTITUCAO     = ?
+                    ,FORMACAO_CURSO          = ?
+                    ,FORMACAO_ANO            = ?
+              where
+                     ID                      = ?";
 
-			$dataNascimento = Util::formataData($_REQUEST['dataNascimento'],'/','-','USA');
-            $dataExpedicaoRg = Util::formataData($_REQUEST['dataExpedicaoRg'],'/','-','USA');
-            $dataCadastroPisPasep = Util::formataData($_REQUEST['dataCadastroPisPasep'],'/','-','USA');
-            $validade = Util::formataData($_REQUEST['validade'],'/','-','USA');
-            $dataAdmissao1 = Util::formataData($_REQUEST['dataAdmissao1'],'/','-','USA');
-            $dataDemissao1 = Util::formataData($_REQUEST['dataDemissao1'],'/','-','USA');
-            $dataAdmissao2 = Util::formataData($_REQUEST['dataAdmissao2'],'/','-','USA');
-            $dataDemissao2 = Util::formataData($_REQUEST['dataDemissao2'],'/','-','USA');
+			$dataNascimento = Util::formataData($param['dataNascimento'],'/','-','USA');
+      $dataExpedicaoRg = Util::formataData($param['dataExpedicaoRg'],'/','-','USA');
+      $dataPisPasep = Util::formataData($param['dataPisPasep'],'/','-','USA');
+      $validade = Util::formataData($param['vencimentoHabilitacao'],'/','-','USA');
+      $dataAdmissao1 = Util::formataData($param['dataAdmissao_1'],'/','-','USA');
+      $dataDemissao1 = Util::formataData($param['dataDemissao_1'],'/','-','USA');
+      $dataAdmissao2 = Util::formataData($param['dataAdmissao_2'],'/','-','USA');
+      $dataDemissao2 = Util::formataData($param['dataDemissao_2'],'/','-','USA');
 
-            /* @var $salario float */
-            $salario1 = str_replace(',','.',str_replace('.','',$_REQUEST['salario1']));
-            $salario2 = str_replace(',','.',str_replace('.','',$_REQUEST['salario2']));
+      /* @var $salario float */
+      $salario1 = str_replace(',','.',str_replace('.','',$param['salario_1']));
+      $salario2 = str_replace(',','.',str_replace('.','',$param['salario_2']));
 
-            $count = $rs->execute(array($param['idCurriculo'],
-										$param['nome'],
-										$param['sexo'],
-										$param['endereco'],
-										$param['bairro'],
-										$param['cidade'],
-										$param['uf'],
-										$param['cep'],
-										$param['telefoneFixo'],
-										$param['telefoneCelular'],
-										$param['email'],
-										$dataNascimento,
-										$param['cidadeNascimento'],
-										$param['ufNascimento'],
-										$param['estadoCivel'],
-										$param['rg'],
-										$param['organcaoExpedidor'],
-										$dataExpedicaoRg,
-										$param['cpf'],
-										$param['carteiraReservista'],
-										$param['pisPasep'],
-										$dataCadastroPisPasep,
-										$param['tituloEleitor'],
-										$param['zona'],
-										$param['secao'],
-										$param['habitacao'],
-										$param['categoria'],
-										$validade,
-										$param['areaInteresse'],
-										$param['objetivoProfissional'],
-										$param['disponibilidadeHorario'],
-										$param['msn'],
-										$param['twitter'],
-										$param['facebook'],
-										$param['nomeEmpresa1'],
-										$param['atividadeEmpresa1'],
-										$dataAdmissao1,
-										$dataDemissao1,
-										$param['funcaoExercida1'],
-										$param['atividadeExercida1'],
-										$salario1,
-										$param['nomeEmpresa2'],
-										$param['atividadeEmpresa2'],
-										$dataAdmissao2,
-										$dataDemissao2,
-										$param['funcaoExercida2'],
-										$param['atividadeExercida2'],
-										$salario2));
+      $count = $rs->execute(array($param['idCurriculo'],
+                                  $param['nome'],
+                                  $param['sexo'],
+                                  $param['endereco'],
+                                  $param['bairro'],
+                                  $param['cidade'],
+                                  $param['uf'],
+                                  $param['cep'],
+                                  $param['telefoneFixo'],
+                                  $param['telefoneCelular'],
+                                  $param['email'],
+                                  $dataNascimento,
+                                  $param['cidadeNascimento'],
+                                  $param['ufNascimento'],
+                                  $param['estadoCivil'],
+                                  $param['rg'],
+                                  $param['orgaoExpedidor'],
+                                  $dataExpedicaoRg,
+                                  $param['cpf'],
+                                  $param['carteiraReservista'],
+                                  $param['numeroPisPasep'],
+                                  $dataPisPasep,
+                                  $param['numeroTituloEleitor'],
+                                  $param['zona'],
+                                  $param['secao'],
+                                  $param['numeroHabilitacao'],
+                                  $param['categoria'],
+                                  $validade,
+                                  $param['areaInteresse'],
+                                  $param['objetivoProfissional'],
+                                  $param['disponibilidadeHorario'],
+                                  $param['msn'],
+                                  $param['twitter'],
+                                  $param['facebook'],
+                                  $param['nomeEmpresa_1'],
+                                  $param['atividadeEmpresa_1'],
+                                  $dataAdmissao1,
+                                  $dataDemissao1,
+                                  $param['funcaoExercida_1'],
+                                  $param['atividadeExercida_1'],
+                                  $salario1,
+                                  $param['nomeEmpresa_2'],
+                                  $param['atividadeEmpresa_2'],
+                                  $dataAdmissao2,
+                                  $dataDemissao2,
+                                  $param['funcaoExercida_2'],
+                                  $param['atividadeExercida_2'],
+                                  $salario2,
+                                  $param['instituicao'],
+                                  $param['cursoGraduacao'],
+                                  $param['anoConclusao']));
 
 			if($count === false){
-				$resposta['mensagem'] = "Erro ao alterar a curriculo.";
+				$resposta['mensagem'] = "Erro ao alterar a currículo.";
 				$resposta['caminho']  = $param['caminho'] ? $param['caminho'] : '';
 				$resposta['sucesso']  = false;
 			}else{
-				$resposta['mensagem'] = "curriculo alterada com sucesso.";
+				$resposta['mensagem'] = "Currículo alterada com sucesso.";
 				$resposta['caminho']  = $param['caminho'] ? $param['caminho'] : '';
 				$resposta['sucesso']  = true;
 			}

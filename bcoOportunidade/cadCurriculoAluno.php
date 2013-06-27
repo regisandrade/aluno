@@ -38,10 +38,10 @@ if (!empty($arrAluno)) {
 ?>
 <h2>Atualizar seu curr&iacute;culo</h2>
 
-<form name="formCurriculo" id="formCurriculo" class="form-horizontal" method="POST" action="">
+<form name="formCurriculo" id="formCurriculo" class="form-horizontal" method="POST" action="bcoOportunidade/alterarCurriculoAluno.php">
 <input type="hidden" name="ID_CURRICULO" value="<?php echo ($objAluno && $objAluno->idCurriculo != '' ? $objAluno->idCurriculo : ''); ?>" />
-<input type="hidden" name="tipoAcao" id="tipoAcao" value="<?php echo ($objAluno && $objAluno->id != '' ? '2' : '1'); ?>"/>
-<input type="hidden" name="cpf" value="<?php echo $_SESSION['id_numero']; ?>" />
+<input type="hidden" name="ACAO" id="ACAO" value="<?php echo ($objAluno && $objAluno->idCurriculo != '' ? 'ALTERAR' : 'INCLUIR'); ?>"/>
+<input type="hidden" name="cpf" value="<?php echo $objAluno->cpf; ?>" />
 <input type="hidden" name="idAluno" value="<?php echo ($objAluno && $objAluno->cpf != '' ? str_replace('.','',str_replace('-','',$objAluno->cpf)) : ''); ?>" />
 
     <div class="control-group">
@@ -363,19 +363,19 @@ if (!empty($arrAluno)) {
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="facebook">Instituição:</label>
+        <label class="control-label" for="instituicao">Instituição:</label>
         <div class="controls">
             <input type="text" id="instituicao" name="instituicao" class="input-xxlarge" value="<?php echo ($objAluno && $objAluno->instituicao != '' ? $objAluno->instituicao : ''); ?>" />
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="facebook">Curso:</label>
+        <label class="control-label" for="cursoGraduacao">Curso:</label>
         <div class="controls">
             <input type="text" id="cursoGraduacao" name="cursoGraduacao" class="input-xlarge" value="<?php echo ($objAluno && $objAluno->cursoGraduacao != '' ? $objAluno->cursoGraduacao : ''); ?>" />
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="facebook">Ana de conclusão:</label>
+        <label class="control-label" for="anoConclusao">Ana de conclusão:</label>
         <div class="controls">
             <input type="text" id="anoConclusao" name="anoConclusao" class="input-mini" value="<?php echo ($objAluno && $objAluno->anoConclusao != '' ? $objAluno->anoConclusao : ''); ?>" />
         </div>
@@ -514,7 +514,7 @@ if (!empty($arrAluno)) {
     </div>
 
     <div class="form-actions">
-        <button type="submit" id="btnGravarCurriculo" class="btn btn-large btn-primary">Atualizar Currículo</button>
+        <button type="button" id="btnGravarCurriculo" class="btn btn-large btn-primary">Atualizar Currículo</button>
         <button type="button" class="btn btn-large">Cancelar</button>
     </div>
 
