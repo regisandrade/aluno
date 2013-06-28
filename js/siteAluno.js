@@ -119,6 +119,10 @@ $(document).ready(function() {
     $('#btnGravarCurriculo').click(function(){
 
         $('body').append('<div id="dialog-message"></div>');
+        param = {'idDiv':"#dialog-message",
+                 'largura':400,
+                 'altura':200,
+                 'titulo':"Alerta"};
 
         $.ajax({
             url : "home.php?pag=bcoOportunidade&arq=alterarCurriculoAluno.php",
@@ -126,12 +130,10 @@ $(document).ready(function() {
             type: 'POST',
             dataType: "json",
             success : function(resposta) {
-                param = {'idDiv':"#dialog-message",
-                         'largura':400,
-                         'altura':200,
-                         'titulo':"Alerta"};
-
-                alertaDialog(resposta,param);
+                alertaDialog(resposta.mensagem,param);
+            },
+            error: function(erro){
+                alertaDialog(erro,param);
             }
         });
     });

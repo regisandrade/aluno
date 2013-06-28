@@ -150,7 +150,7 @@ if (!empty($arrAluno)) {
         <label class="control-label" for="dataNascimento">Data de Nascimento:</label>
         <div class="controls">
             <div class="input-append date" id="dataNascimento" data-date="<?php echo ($objAluno && $objAluno->dataNascimento != '' ? $objAluno->dataNascimento : ''); ?>" data-date-format="dd/mm/yyyy">
-                <input class="input-medium" type="text" value="<?php echo ($objAluno && $objAluno->dataNascimento != '' ? $objAluno->dataNascimento : ''); ?>" readonly />
+                <input class="input-medium" name="dataNascimento" type="text" value="<?php echo ($objAluno && $objAluno->dataNascimento != '' ? $objAluno->dataNascimento : ''); ?>" readonly />
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <!-- <input type="text" id="dataNascimento" name="dataNascimento" class="input-small" maxlength="10" value="" />&nbsp;<img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"> -->
             </div>
@@ -225,7 +225,7 @@ if (!empty($arrAluno)) {
         <label class="control-label" for="dataExpedicaoRg">Data de Expedi&ccedil;&atilde;o do RG:</label>
         <div class="controls">
             <div class="input-append date" id="dataExpedicaoRg" data-date="<?php echo ($objAluno && $objAluno->dataExpedicaoRg != '' ? $objAluno->dataExpedicaoRg : ''); ?>" data-date-format="dd/mm/yyyy">
-                <input class="input-medium" type="text" value="<?php echo ($objAluno && $objAluno->dataExpedicaoRg != '' ? $objAluno->dataExpedicaoRg : ''); ?>" readonly />
+                <input class="input-medium" name="dataExpedicaoRg" type="text" value="<?php echo ($objAluno && $objAluno->dataExpedicaoRg != '' ? $objAluno->dataExpedicaoRg : ''); ?>" readonly />
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <!-- <input type="text" id="dataExpedicaoRg" name="dataExpedicaoRg" class="input-small" value="<?php echo ($objAluno && $objAluno->dataExpedicaoRg != '' ? Util::formataData($objAluno->dataExpedicaoRg,'-','/') : ''); ?>" />&nbsp;<img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"> -->
             </div>
@@ -257,7 +257,7 @@ if (!empty($arrAluno)) {
         <label class="control-label" for="dataPisPasep">Data de Cadastro do PIS-PASEP:</label>
         <div class="controls">
             <div class="input-append date" id="dataPisPasep" data-date="<?php echo ($objAluno && $objAluno->dataPisPasep != '' ? $objAluno->dataPisPasep : ''); ?>" data-date-format="dd/mm/yyyy">
-                <input class="input-medium" type="text" value="<?php echo ($objAluno && $objAluno->dataPisPasep != '' ? $objAluno->dataPisPasep : ''); ?>" readonly />
+                <input class="input-medium" name="dataPisPasep" type="text" value="<?php echo ($objAluno && $objAluno->dataPisPasep != '' ? $objAluno->dataPisPasep : ''); ?>" readonly />
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <!-- <input type="text" id="dataPisPasep" name="dataPisPasep" class="input-small" maxlength="10" value="<?php echo ($objAluno && $objAluno->dataPisPasep != '' ? Util::formataData($objAluno->dataPisPasep,'-','/') : ''); ?>" />&nbsp;<img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"> -->
             </div>
@@ -303,7 +303,7 @@ if (!empty($arrAluno)) {
         <label class="control-label" for="vencimentoHabilitacao">Vencimento:</label>
         <div class="controls">
             <div class="input-append date" id="vencimentoHabilitacao" data-date="<?php echo ($objAluno && $objAluno->vencimentoHabilitacao != '' ? $objAluno->vencimentoHabilitacao : ''); ?>" data-date-format="dd/mm/yyyy">
-                <input class="input-medium" type="text" value="<?php echo ($objAluno && $objAluno->vencimentoHabilitacao != '' ? $objAluno->vencimentoHabilitacao : ''); ?>" readonly />
+                <input class="input-medium" name="vencimentoHabilitacao" type="text" value="<?php echo ($objAluno && $objAluno->vencimentoHabilitacao != '' ? $objAluno->vencimentoHabilitacao : ''); ?>" readonly />
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <!-- <input type="text" id="vencimentoHabilitacao" name="vencimentoHabilitacao" maxlength="10" class="input-small" value="<?php echo ($objAluno && $objAluno->vencimentoHabilitacao != '' ? Util::formataData($objAluno->vencimentoHabilitacao,'-','/') : ''); ?>" />&nbsp;<img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"> -->
             </div>
@@ -410,7 +410,7 @@ if (!empty($arrAluno)) {
         <label class="control-label" for="dataAdmissao_1">Data de admissão:</label>
         <div class="controls">
             <div class="input-append date" id="dataAdmissao_1" data-date="<?php echo ($objAluno && $objAluno->dataAdmissao_1 != '' ? $objAluno->dataAdmissao_1 : ''); ?>" data-date-format="dd/mm/yyyy">
-                <input class="input-medium" type="text" value="<?php echo ($objAluno && $objAluno->dataAdmissao_1 != '' ? $objAluno->dataAdmissao_1 : ''); ?>" readonly />
+                <input class="input-medium" name="dataAdmissao_1" type="text" value="<?php echo ($objAluno && $objAluno->dataAdmissao_1 != '' ? $objAluno->dataAdmissao_1 : ''); ?>" readonly />
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <!-- <input type="text" id="dataAdmissao_1" name="dataAdmissao_1" class="input-small" maxlength="10" value="<?php echo ($objAluno && $objAluno->DATA_ADMISSAO_1 != '' ? Util::formataData($objAluno->DATA_DEMISSAO_1,'-','/') : ''); ?>" /> <img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"> -->
             </div>
@@ -421,7 +421,7 @@ if (!empty($arrAluno)) {
         <label class="control-label" for="dataDemissao_1">Data de demissão:</label>
         <div class="controls">
             <div class="input-append date" id="dataDemissao_1" data-date="<?php echo ($objAluno && $objAluno->dataDemissao_1 != '' ? $objAluno->dataDemissao_1 : ''); ?>" data-date-format="dd/mm/yyyy">
-                <input class="input-medium" type="text" value="<?php echo ($objAluno && $objAluno->dataDemissao_1 != '' ? $objAluno->dataDemissao_1 : ''); ?>" readonly />
+                <input class="input-medium" name="dataDemissao_1" type="text" value="<?php echo ($objAluno && $objAluno->dataDemissao_1 != '' ? $objAluno->dataDemissao_1 : ''); ?>" readonly />
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <!-- <input type="text" id="dataDemissao_1" name="dataDemissao_1" class="input-small" maxlength="10" value="<?php echo ($objAluno && $objAluno->DATA_DEMISSAO_1 != '' ? Util::formataData($objAluno->DATA_DEMISSAO_1,'-','/') : ''); ?>" />&nbsp;<img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"> -->
             </div>
@@ -474,7 +474,7 @@ if (!empty($arrAluno)) {
         <label class="control-label" for="dataAdmissao_2">Data de admissão:</label>
         <div class="controls">
             <div class="input-append date" id="dataAdmissao_2" data-date="<?php echo ($objAluno && $objAluno->dataAdmissao_2 != '' ? $objAluno->dataAdmissao_2 : ''); ?>" data-date-format="dd/mm/yyyy">
-                <input class="input-medium" type="text" value="<?php echo ($objAluno && $objAluno->dataAdmissao_2 != '' ? $objAluno->dataAdmissao_2 : ''); ?>" readonly />
+                <input class="input-medium" name="dataAdmissao_2" type="text" value="<?php echo ($objAluno && $objAluno->dataAdmissao_2 != '' ? $objAluno->dataAdmissao_2 : ''); ?>" readonly />
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <!-- <input type="text" id="dataAdmissao_2" name="dataAdmissao_2" class="input-small" maxlength="10" value="<?php echo ($objAluno && $objAluno->DATA_ADMISSAO_2 != '' ? Util::formataData($objAluno->DATA_DEMISSAO_2,'-','/') : ''); ?>" /> <img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"> -->
             </div>
@@ -485,7 +485,7 @@ if (!empty($arrAluno)) {
         <label class="control-label" for="dataDemissao_2">Data de demissão:</label>
         <div class="controls">
             <div class="input-append date" id="dataDemissao_2" data-date="<?php echo ($objAluno && $objAluno->dataDemissao_2 != '' ? $objAluno->dataDemissao_2 : ''); ?>" data-date-format="dd/mm/yyyy">
-                <input class="input-medium" type="text" value="<?php echo ($objAluno && $objAluno->dataDemissao_2 != '' ? $objAluno->dataDemissao_2 : ''); ?>" readonly />
+                <input class="input-medium" name="dataDemissao_2" type="text" value="<?php echo ($objAluno && $objAluno->dataDemissao_2 != '' ? $objAluno->dataDemissao_2 : ''); ?>" readonly />
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <!-- <input type="text" id="dataDemissao_2" name="dataDemissao_2" class="input-small" maxlength="10" value="<?php echo ($objAluno && $objAluno->DATA_DEMISSAO_2 != '' ? Util::formataData($objAluno->DATA_DEMISSAO_2,'-','/') : ''); ?>" />&nbsp;<img src="../admin/bcoOportunidade/imagens/icone-calendario.png" class="imgCalendario" border="0"> -->
             </div>
