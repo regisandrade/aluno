@@ -1,0 +1,5 @@
+*.php~
+*.css~
+*.css~
+*.html~
+/nbproject/private/

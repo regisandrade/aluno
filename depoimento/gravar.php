@@ -1,22 +1,18 @@
 <?php
-require('../../conexao.php'); //== Faz a conexão com o banco
+require_once "../../lib/myDB.class.php";
+$bd = new myDB();
 
-$gravar = "
-INSERT INTO depoimento (
-	Aluno,
-	Codg_Curso,
-	Depoimento,
-	Data,
-	Status
-)VALUES(
-	'".$_POST['aluno']."',
-	".$_POST['curso'].",
-	'".$_POST['depoimento']."',
-	'".$_POST['data']."',
-	".$_POST['status'].")";
-mysql_query($gravar) or die('Erro na gravação do Depoimento. '.mysql_error());
+require_once "../class/depoimento.class.php";
+$depoimentoDAO = new Depoimento();
+
+switch ($_REQUEST['ACAO']) {
+	case 'GRAVAR':
+            $parametros['idNumero'] = $_REQUEST['aluno'];
+            $parametros['codgCurso'] = $_REQUEST['curso'];
+            $parametros['depoimento'] = utf8_decode($_REQUEST['depoimento']);
+            $depoimentoDAO->incluir($bd,$parametros);
+            unset($parametros);
+            break;
+	
+}
 ?>
-<script>
-	alert('Seu Depoimento foi enviado com sucesso.');
-	document.location = "../home.php";
-</script>
