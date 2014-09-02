@@ -1,14 +1,18 @@
 <?php
 session_start();
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
+//require_once("../../lib/config.php");
+require_once "../lib/myDB.class.php";
+
+$param['sistema'] = 'ipecon';
+$bd = myDB::getInstance($param);
+unset($param);
 
 // Lib FPDF
-define('FPDF_FONTPATH','../../lib/fpdf/font/');
-require_once "../../lib/fpdf/fpdf.php";
+define('FPDF_FONTPATH','../lib/fpdf/font/');
+require_once "../lib/fpdf/fpdf.php";
 
-require_once "../class/turma.class.php";
+require_once "../class/Turma.class.php";
 
 class GerarDeclaracaoEstudante extends FPDF{
 
@@ -65,9 +69,9 @@ class GerarDeclaracaoEstudante extends FPDF{
 
     $this->Cell(200,5, 'Informamos ainda que o curso '.$frase2.' de '.$listaDatas['dataInicial'].' a '.$listaDatas['dataFinal'], 0, 1, 'L');
 
-    $this->Ln(15);
+    $this->Ln(20);
     $this->Cell(200,5, 'Por ser verdade, firmamos o presente documento.', 0, 1, 'C');
-    $this->Image('../imagens/assinatura_digital.jpg',90,115,35);
+    $this->Image('../imagens/assinatura_digital.jpg',90,125,40);
     $this->Cell(200,5, utf8_decode('Goiânia, ').date('d/m/Y'), 0, 1, 'C');
 
   }

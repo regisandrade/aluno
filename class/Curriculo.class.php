@@ -180,6 +180,7 @@ class Curriculo {
       /* @var $salario float */
       $salario1 = str_replace(',','.',str_replace('.','',$param['salario_1']));
       $salario2 = str_replace(',','.',str_replace('.','',$param['salario_2']));
+      $cpf = str_replace('.','',str_replace('-','',$param['cpf']));
 
 			$sql = "insert into
                     curriculos(
@@ -235,132 +236,119 @@ class Curriculo {
                           ,SALARIO_2
                           ,DATA_CADASTRO
                     ) values (
-                           '".$param['nome']."'
-                          ,'".$param['sexo']."'
-                          ,'".$param['endereco']."'
-                          ,'".$param['bairro']."'
-                          ,'".$param['cidade']."'
-                          ,'".$param['uf']."'
-                          ,'".$param['cep']."'
-                          ,'".$param['telefoneFixo']."'
-                          ,'".$param['telefoneCelular']."'
-                          ,'".$param['email']."'
-                          ,'".$dataNascimento."'
-                          ,'".$param['cidadeNascimento']."'
-                          ,'".$param['ufNascimento']."'
-                          ,'".$param['estadoCivil']."'
-                          ,'".$param['rg']."'
-                          ,'".$param['orgaoExpedidor']."'
-                          ,'".$dataExpedicaoRg."'
-                          ,'".$param['cpf']."'
-                          ,'".$param['carteiraReservista']."'
-                          ,'".$param['numeroPisPasep']."'
-                          ,'".$dataPisPasep."'
-                          ,'".$param['numeroTituloEleitor']."'
-                          ,'".$param['zona']."'
-                          ,'".$param['secao']."'
-                          ,'".$param['numeroHabilitacao']."'
-                          ,'".$param['categoria']."'
-                          ,'".$validade."'
-                          ,'".$param['areaInteresse']."'
-                          ,'".$param['objetivoProfissional']."'
-                          ,'".$param['disponibilidadeHorario']."'
-                          ,'".$param['msn']."'
-                          ,'".$param['twitter']."'
-                          ,'".$param['facebook']."'
-                          ,'".$param['instituicao']."'
-                          ,'".$param['cursoGraduacao']."'
-                          ,".$param['anoConclusao']."
-                          ,'".$param['nomeEmpresa_1']."'
-                          ,'".$param['atividadeEmpresa_1']."'
-                          ,'".$dataAdmissao1."'
-                          ,'".$dataDemissao1."'
-                          ,'".$param['funcaoExercida_1']."'
-                          ,'".$param['atividadeExercida_1']."'
-                          ,'".$salario2."'
-                          ,'".$param['nomeEmpresa_2']."'
-                          ,'".$param['atividadeEmpresa_2']."'
-                          ,'".$dataAdmissao2."'
-                          ,'".$dataDemissao2."'
-                          ,'".$param['funcaoExercida_2']."'
-                          ,'".$param['atividadeExercida_2']."'
-                          ,'".$salario2."'
-                          ,'".date('Y-m-d')."')";
+                           ?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?
+                          ,?)";
       
-			$rs  = $pdo->prepare($sql);
-      $count = $rs->execute();
+      $pdo->beginTransaction();
 			
-			// $dataNascimento = Util::formataData($param['dataNascimento'],'/','-','USA');
-   //    $dataExpedicaoRg = Util::formataData($param['dataExpedicaoRg'],'/','-','USA');
-   //    $dataPisPasep = Util::formataData($param['dataPisPasep'],'/','-','USA');
-   //    $validade = Util::formataData($param['vencimentoHabilitacao'],'/','-','USA');
-   //    $dataAdmissao1 = Util::formataData($param['dataAdmissao_1'],'/','-','USA');
-   //    $dataDemissao1 = Util::formataData($param['dataDemissao_1'],'/','-','USA');
-   //    $dataAdmissao2 = Util::formataData($param['dataAdmissao_2'],'/','-','USA');
-   //    $dataDemissao2 = Util::formataData($param['dataDemissao_2'],'/','-','USA');
+      $rs  = $pdo->prepare($sql);
 
-      /* @var $salario float */
-      // $salario1 = str_replace(',','.',str_replace('.','',$param['salario_1']));
-      // $salario2 = str_replace(',','.',str_replace('.','',$param['salario_2']));
+      $rs->bindValue(1, $param['nome'], PDO::PARAM_STR);
+      $rs->bindValue(2, $param['sexo'], PDO::PARAM_STR);
+      $rs->bindValue(3, $param['endereco'], PDO::PARAM_STR);
+      $rs->bindValue(4, $param['bairro'], PDO::PARAM_STR);
+      $rs->bindValue(5, $param['cidade'], PDO::PARAM_STR);
+      $rs->bindValue(6, $param['uf'], PDO::PARAM_STR);
+      $rs->bindValue(7, $param['cep'], PDO::PARAM_STR);
+      $rs->bindValue(8, $param['telefoneFixo'], PDO::PARAM_STR);
+      $rs->bindValue(9, $param['telefoneCelular'], PDO::PARAM_STR);
+      $rs->bindValue(10, $param['email'], PDO::PARAM_STR);
+      $rs->bindValue(11, $dataNascimento, PDO::PARAM_STR);
+      $rs->bindValue(12, $param['cidadeNascimento'], PDO::PARAM_STR);
+      $rs->bindValue(13, $param['ufNascimento'], PDO::PARAM_STR);
+      $rs->bindValue(14, $param['estadoCivil'], PDO::PARAM_STR);
+      $rs->bindValue(15, $param['rg'], PDO::PARAM_STR);
+      $rs->bindValue(16, $param['orgaoExpedidor'], PDO::PARAM_STR);
+      $rs->bindValue(17, $param['dataExpedicaoRg'], PDO::PARAM_STR);
+      $rs->bindValue(18, $cpf, PDO::PARAM_STR);
+      $rs->bindValue(19, $param['carteiraReservista'], PDO::PARAM_STR);
+      $rs->bindValue(20, $param['numeroPisPasep'], PDO::PARAM_STR);
+      $rs->bindValue(21, $dataPisPasep, PDO::PARAM_STR);
+      $rs->bindValue(22, $param['numeroTituloEleitor'], PDO::PARAM_STR);
+      $rs->bindValue(23, $param['zona'], PDO::PARAM_STR);
+      $rs->bindValue(24, $param['secao'], PDO::PARAM_STR);
+      $rs->bindValue(25, $param['numeroHabilitacao'], PDO::PARAM_STR);
+      $rs->bindValue(26, $param['categoria'], PDO::PARAM_STR);
+      $rs->bindValue(27, $validade, PDO::PARAM_STR);
+      $rs->bindValue(28, $param['areaInteresse'], PDO::PARAM_STR);
+      $rs->bindValue(29, $param['objetivoProfissional'], PDO::PARAM_STR);
+      $rs->bindValue(30, $param['disponibilidadeHorario'], PDO::PARAM_STR);
+      $rs->bindValue(31, $param['msn'], PDO::PARAM_STR);
+      $rs->bindValue(32, $param['twitter'], PDO::PARAM_STR);
+      $rs->bindValue(33, $param['facebook'], PDO::PARAM_STR);
+      $rs->bindValue(34, $param['instituicao'], PDO::PARAM_STR);
+      $rs->bindValue(35, $param['cursoGraduacao'], PDO::PARAM_STR);
+      $rs->bindValue(36, $param['anoConclusao'], PDO::PARAM_INT);
+      $rs->bindValue(37, $param['nomeEmpresa_1'], PDO::PARAM_STR);
+      $rs->bindValue(38, $param['atividadeEmpresa_1'], PDO::PARAM_STR);
+      $rs->bindValue(39, $dataAdmissao1, PDO::PARAM_STR);
+      $rs->bindValue(40, $dataDemissao1, PDO::PARAM_STR);
+      $rs->bindValue(41, $param['funcaoExercida_1'], PDO::PARAM_STR);
+      $rs->bindValue(42, $param['atividadeExercida_1'], PDO::PARAM_STR);
+      $rs->bindValue(43, $param['salario1'], PDO::PARAM_STR);
+      $rs->bindValue(44, $param['nomeEmpresa_2'], PDO::PARAM_STR);
+      $rs->bindValue(45, $param['atividadeEmpresa_2'], PDO::PARAM_STR);
+      $rs->bindValue(46, $dataAdmissao2, PDO::PARAM_STR);
+      $rs->bindValue(47, $dataDemissao2, PDO::PARAM_STR);
+      $rs->bindValue(48, $param['funcaoExercida_2'], PDO::PARAM_STR);
+      $rs->bindValue(49, $param['atividadeExercida_2'], PDO::PARAM_STR);
+      $rs->bindValue(50, $param['salario2'], PDO::PARAM_STR);
+      $rs->bindValue(51, date('Y-m-d'), PDO::PARAM_STR);
 
-			// $count = $rs->execute(array(':nome'=>$param['nome'],
-   //                                ':sexo'=>$param['sexo'],
-   //                                ':endereco'=>$param['endereco'],
-   //                                ':bairro'=>$param['bairro'],
-   //                                ':cidade'=>$param['cidade'],
-   //                                ':uf'=>$param['uf'],
-   //                                ':cep'=>$param['cep'],
-   //                                ':telefoneFixo'=>$param['telefoneFixo'],
-   //                                ':telefoneCelular'=>$param['telefoneCelular'],
-   //                                ':email'=>$param['email'],
-   //                                ':dataNascimento'=>$dataNascimento,
-   //                                ':cidadeNascimento'=>$param['cidadeNascimento'],
-   //                                ':ufNascimento'=>$param['ufNascimento'],
-   //                                ':estadoCivil'=>$param['estadoCivil'],
-   //                                ':rg'=>$param['rg'],
-   //                                ':orgaoExpedidor'=>$param['orgaoExpedidor'],
-   //                                ':dataExpedicaoRg'=>$dataExpedicaoRg,
-   //                                ':cpf'=>$param['cpf'],
-   //                                ':carteiraReservista'=>$param['carteiraReservista'],
-   //                                ':pisPasep'=>$param['numeroPisPasep'],
-   //                                ':dataPisPasep'=>$dataPisPasep,
-   //                                ':tituloEleitor'=>$param['numeroTituloEleitor'],
-   //                                ':zona'=>$param['zona'],
-   //                                ':secao'=>$param['secao'],
-   //                                ':habilitacao'=>$param['numeroHabilitacao'],
-   //                                ':categoria'=>$param['categoria'],
-   //                                ':validade'=>$validade,
-   //                                ':areaInteresse'=>$param['areaInteresse'],
-   //                                ':objetivoProfissional'=>$param['objetivoProfissional'],
-   //                                ':disponibilidadeHorario'=>$param['disponibilidadeHorario'],
-   //                                ':msn'=>$param['msn'],
-   //                                ':twitter'=>$param['twitter'],
-   //                                ':facebook'=>$param['facebook'],
-   //                                ':formacaoInstituicao'=>$param['instituicao'],
-   //                                ':formacaoCurso'=>$param['cursoGraduacao'],
-   //                                ':formacaoAno'=>$param['anoConclusao'],
-   //                                ':nomeEmpresa1'=>$param['nomeEmpresa_1'],
-   //                                ':atividadeEmpresa1'=>$param['atividadeEmpresa_1'],
-   //                                ':dataAdmissao1'=>$dataAdmissao1,
-   //                                ':dataDemissao1'=>$dataDemissao1,
-   //                                ':funcaoExercida1'=>$param['funcaoExercida_1'],
-   //                                ':atividadeExercida1'=>$param['atividadeExercida_1'],
-   //                                ':salario1'=>$salario1,
-   //                                ':nomeEmpresa2'=>$param['nomeEmpresa_2'],
-   //                                ':atividadeEmpresa2'=>$param['atividadeEmpresa_2'],
-   //                                ':dataAdmissao2'=>$dataAdmissao2,
-   //                                ':dataDemissao2'=>$dataDemissao2,
-   //                                ':funcaoExercida2'=>$param['funcaoExercida_2'],
-   //                                ':atividadeExercida2'=>$param['atividadeExercida_2'],
-   //                                ':salario2'=>$salario2,
-   //                                ':dataCadastro'=>date('Y-m-d')));
-      echo "<pre>";
-      print_r($sql);
-      var_dump($param, $rs->errorInfo());
-      echo "</pre>";
-      die;
+      $count = $rs->execute();
+			$rs->commit();
 
 			if($count === false){
+        $rs->rollBack();
 				$resposta['mensagem'] = "Erro ao incluir o currículo.";
 				$resposta['caminho']  = $param['caminho'] ? $param['caminho'] : '';
 				$resposta['sucesso']  = false;
@@ -370,6 +358,7 @@ class Curriculo {
 				$resposta['sucesso']  = true;
 			}
 		} catch (Exception $e) {
+      $rs->rollBack();
 			$resposta['mensagem'] = $e->getMessage();
 			$resposta['caminho']  = $param['caminho'] ? $param['caminho'] : '';
 			$resposta['sucesso']  = false;

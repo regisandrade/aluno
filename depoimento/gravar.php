@@ -1,8 +1,11 @@
 <?php
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
+require_once "../lib/myDB.class.php";
 
-require_once "../class/depoimento.class.php";
+$param['sistema'] = 'ipecon';
+$bd = myDB::getInstance($param);
+unset($param);
+
+require_once "../class/Depoimento.class.php";
 $depoimentoDAO = new Depoimento();
 
 switch ($_REQUEST['ACAO']) {

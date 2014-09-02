@@ -1,5 +1,5 @@
 <?php
-require_once "../lib/Menu.class.php";
+require_once "lib/Menu.class.php";
 $menu = new Menu();
 
 echo "<a class=\"brand\" href=\"home.php\">IPECON - Área do aluno</a>\n

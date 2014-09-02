@@ -13,7 +13,7 @@ $verificarDepoimento = $depoimentoDAO->verificarDepoimento($bd,$parametros);
 unset($parametros);
 
 $desabilitarBotao = null;
-if($verificarDepoimento['sucesso']){
+if(isset($verificarDepoimento['sucesso'])){
   $desabilitarBotao = ' disabled';
 ?>
   <script>

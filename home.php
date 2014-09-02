@@ -1,13 +1,16 @@
 <?php
 session_start();
-$_SESSION['turma']     = "PJ004";
-$_SESSION['nomeCurso'] = "MBA em Perícia Judicial";
-$_SESSION['idCurso']   = "1";
-$_SESSION['idNumero']  = "36083445191";
-$_SESSION['nomeAluno'] = "Ana Marta Rocha";
-$_SESSION['ano']       = 2005;
+$_SESSION['turma']     = "GAO 003";
+$_SESSION['nomeCurso'] = "MBA Gestao e Analise Organizacional";
+$_SESSION['idCurso']   = "19";
+$_SESSION['idNumero']  = "01406070130";
+$_SESSION['nomeAluno'] = "Suelen de Sousa Rezende Pontes";
+$_SESSION['ano']       = 2013;
 
-require_once "../lib/myDB.class.php";
+require_once("lib/util.class.php");
+require_once("lib/config.php");
+require_once "lib/myDB.class.php";
+
 if (isset($_REQUEST['pag']) && $_REQUEST['pag'] == 'bcoOportunidade') {
   $param['sistema'] = 'bcoOportunidade';
 } else {
@@ -15,8 +18,7 @@ if (isset($_REQUEST['pag']) && $_REQUEST['pag'] == 'bcoOportunidade') {
 }
 $bd = myDB::getInstance($param);
 unset($param);
-
-include_once("../lib/config.php");
+//$util = new Util();
 ?>
 <!DOCTYPE html>
 <html>

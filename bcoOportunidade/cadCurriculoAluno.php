@@ -31,9 +31,9 @@ if (!empty($arrAluno)) {
 
     //echo "tem dados na tabela de aluno";
 }
-// echo "<pre>";
-// print_r($objAluno);
-// echo "</pre>";
+ echo "<pre>";
+ print_r($objAluno);
+ echo "</pre>";
 //die;
 ?>
 <h2>Atualizar seu curr&iacute;culo</h2>

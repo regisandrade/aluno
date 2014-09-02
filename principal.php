@@ -1,11 +1,11 @@
       <?php
       session_start();
-      require_once "../lib/util.class.php";
+      //require_once "../lib/util.class.php";
       ?>
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1><?php echo $_SESSION['nomeAluno']; ?></h1>
-        <p>Um local que o IPECON oferece aos alunos para interagir com os seus alunos.</p>        
+        <p>Um local que o IPECON oferece aos alunos para interagir com os seus alunos.</p>
       </div>
 
       <!-- Example row of columns -->
@@ -41,16 +41,19 @@
           <?php 
             }
           ?>
+          <br>
           <p><a class="btn" href="home.php?pag=avisos&arq=index.php">Mais avisos &raquo;</a></p>
           <?php
           } 
           ?>
         </div>
+        <!--
         <div class="span4">
           <h2>Vagas</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
           <p><a class="btn" href="#">Mais vagas &raquo;</a></p>
         </div>
+        -->
         <div class="span4">
           <h2>Cronograma</h2>
           <?php
@@ -63,28 +66,44 @@
             echo "<p class=\"error\">Nenhum data para este mês.</p>";
           }else{ 
             foreach ($rsCronograma as $value) {
-              //if(date('Ym') == Util::getAno($value['Data_1']).Util::getMes($value['Data_1'])){
-              if('200510' == Util::getAno($value['Data_1']).Util::getMes($value['Data_1']) || 
+              if(date('Ym') == Util::getAno($value['Data_1']).Util::getMes($value['Data_1'])){
+              /*if('200510' == Util::getAno($value['Data_1']).Util::getMes($value['Data_1']) || 
                  '200510' == Util::getAno($value['Data_2']).Util::getMes($value['Data_2']) ||
                  '200510' == Util::getAno($value['Data_3']).Util::getMes($value['Data_3']) ||
                  '200510' == Util::getAno($value['Data_4']).Util::getMes($value['Data_4']) ||
                  '200510' == Util::getAno($value['Data_5']).Util::getMes($value['Data_5']) ||
-                 '200510' == Util::getAno($value['Data_6']).Util::getMes($value['Data_6'])){
+                 '200510' == Util::getAno($value['Data_6']).Util::getMes($value['Data_6'])){*/
 
-                $data1 = ($value['Data_1'] != '--') ? $value['Data_1'].'&nbsp;-&nbsp;' : '';
-                $data2 = ($value['Data_2'] != '--') ? $value['Data_2'].'&nbsp;-&nbsp;' : '';
-                $data3 = ($value['Data_3'] != '--') ? $value['Data_3'].'&nbsp;-&nbsp;' : '';
-                $data4 = ($value['Data_4'] != '--') ? $value['Data_4'].'&nbsp;-&nbsp;' : '';
-                $data5 = ($value['Data_5'] != '--') ? $value['Data_5'].'&nbsp;-&nbsp;' : '';
-                $data6 = ($value['Data_6'] != '--') ? $value['Data_6'] : '';
+                $calendario[$value['Disciplina']][] = ($value['Data_1'] != '--') ? $value['Data_1'] : '';
+                $calendario[$value['Disciplina']][] = ($value['Data_2'] != '--') ? $value['Data_2'] : '';
+                $calendario[$value['Disciplina']][] = ($value['Data_3'] != '--') ? $value['Data_3'] : '';
+                $calendario[$value['Disciplina']][] = ($value['Data_4'] != '--') ? $value['Data_4'] : '';
+                $calendario[$value['Disciplina']][] = ($value['Data_5'] != '--') ? $value['Data_5'] : '';
+                $calendario[$value['Disciplina']][] = ($value['Data_6'] != '--') ? $value['Data_6'] : '';
           ?>
-              <i class="icon-circle-arrow-right"></i>&nbsp;<?php echo utf8_encode($value['Disciplina']); ?><br>Data(s):&nbsp;<?php echo $data1.$data2.$data3.$data4.$data5.$data6; ?><br>
+              
           <?php
               }
               // echo Util::getMes($value['Data_1'])."<br>";
               // echo Util::getAno($value['Data_1'])."<br>";
             }
-            echo "<p><a class=\"btn\" href=\"home.php?pag=cronograma&arq=index.php\">Mais cronogramas &raquo;</a></p>";
+		//echo "<pre>";
+		//print_r($calendario);
+		foreach($calendario as $id => $nome){
+			echo '<i class="icon-circle-arrow-right"></i>&nbsp;<strong>'.utf8_encode($id).'</strong> <br>Data(s): ';
+			foreach($nome as $chave => $data){
+				if($data != ''){
+					if($chave > 0){
+						echo " - ";
+					}
+					echo $data;
+				}
+			}
+			echo "<br>";
+		}
+
+		echo "</pre>";
+		echo "<br><p><a class=\"btn\" href=\"home.php?pag=cronograma&arq=index.php\">Mais cronogramas &raquo;</a></p>";
           } 
           ?>
         </div>

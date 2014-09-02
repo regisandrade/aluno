@@ -1,8 +1,11 @@
 <?php
 require_once "../lib/myDB.class.php";
-$bd = new myDB();
 
-require_once "class/senha.class.php";
+$param['sistema'] = 'ipecon';
+$bd = myDB::getInstance($param);
+unset($param);
+
+require_once "../class/Senha.class.php";
 $senhaDAO = new Senha();
 
 switch ($_REQUEST['ACAO']) {

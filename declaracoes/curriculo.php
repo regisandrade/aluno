@@ -1,15 +1,19 @@
 <?php
 session_start();
 
-require_once "../../lib/myDB.class.php";
-$bd = new myDB();
+//require_once("../../lib/config.php");
+require_once "../lib/myDB.class.php";
+
+$param['sistema'] = 'ipecon';
+$bd = myDB::getInstance($param);
+unset($param);
 
 // Lib FPDF
-define('FPDF_FONTPATH','../../lib/fpdf/font/');
-require_once "../../lib/fpdf/fpdf.php";
+define('FPDF_FONTPATH','../lib/fpdf/font/');
+require_once "../lib/fpdf/fpdf.php";
 
-require_once "../class/notasFrequencias.class.php";
-require_once "../class/turma.class.php";
+require_once "../class/NotasFrequencias.class.php";
+require_once "../class/Turma.class.php";
 
 class GerarDeclaracaoCurriculo extends FPDF{
 
@@ -67,8 +71,8 @@ class GerarDeclaracaoCurriculo extends FPDF{
     $this->Ln(5);
 
     $this->SetFont('helvetica','B',12);
-    $this->Cell(120,5, 'Disciplina', 'B', 0, 'L');
-    $this->Cell(80,5, 'Nota', 'B', 1, 'C');
+    $this->Cell(130,5, 'Disciplina', 'B', 0, 'L');
+    $this->Cell(70,5, 'Nota', 'B', 1, 'R');
 
     $this->SetFont('helvetica','',12);
 
@@ -82,15 +86,15 @@ class GerarDeclaracaoCurriculo extends FPDF{
     unset($parametros);
 
     foreach ($listaNotasFrequencias as $value) {
-      $this->Cell(120,5, utf8_decode($value['disciplina']), 0, 0, 'L');
-      $this->Cell(80,5, $value['nota'], 0, 1, 'C');
+      $this->Cell(130,5, utf8_decode($value['disciplina']), 0, 0, 'L');
+      $this->Cell(70,5, $value['nota'], 0, 1, 'R');
     }
 
     $this->Cell(200,1, '', 'T', 1);
 
     $this->Ln(15);
     $this->Cell(200,5, 'Por ser verdade, firmamos o presente documento.', 0, 1, 'C');
-    $this->Image('../imagens/assinatura_digital.jpg',90,185,35);
+    $this->Image('../imagens/assinatura_digital.jpg',90,215,35);
     $this->Cell(200,5, utf8_decode('Goiânia, ').date('d/m/Y'), 0, 1, 'C');
 
   }

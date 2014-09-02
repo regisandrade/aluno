@@ -29,6 +29,7 @@ $(document).ready(function() {
         $('body').append('<div id="dialog-message"></div>');
 
         var form = $('form[name=formDepoimento]');
+        //alert('http://localhost/ipecon2014/aluno/'+form.attr('action'));
         $.ajax({
             url : form.attr('action'),
             data : form.serialize(),
@@ -46,6 +47,9 @@ $(document).ready(function() {
                 
                 alertaDialog(resposta,param);
                 
+            },
+            error: function(e){
+                alert(e.responseText);
             }
         });
     });

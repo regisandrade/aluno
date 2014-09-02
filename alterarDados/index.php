@@ -19,7 +19,7 @@ if (is_array($dadosAluno)) {
 ?>
 <h2>Atualizar dados cadastrais</h2>
 
-<p class="text-error">Atenção: se os seus dados estiveren incompletos, favor completar.</p>
+<div class="alert alert-error"><strong>Atenção:</strong> <br>Verificar seus dados estão corretos, caso tenha algum problema, corrigir.</div>
 
 <form class="form-horizontal" name="formAluno" method="post" action="alterarDados/gravar.php">
   <input type="hidden" name="ACAO" value="ALTERAR">
