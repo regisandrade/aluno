@@ -17,10 +17,10 @@
 
       if (is_array($listaAvisos)) {
         foreach ($listaAvisos as $value) {
-          echo "<div class=\"alert alert-success ver-aviso\" id=\"aviso".$value['CodigoAviso']."\">\n";
+          echo "<div class=\"alert alert-block ver-aviso\" id=\"aviso".$value['CodigoAviso']."\">\n";
           echo "\t<a class=\"close\" data-hide=\"alert\">×</a>\n";
           echo "\t<strong>".utf8_encode($value['Titulo'])."</strong><br>";
-          echo utf8_encode($value['Descricao']);
+          echo nl2br($value['Descricao']);
           echo "</div>";
           echo "<br>";
         }
@@ -37,12 +37,12 @@
           }else{ 
             foreach ($listaAvisos as $value) {
           ?>
-              <i class="icon-circle-arrow-right"></i>&nbsp;<a href="#" onClick="verAviso(<?php echo $value['CodigoAviso'] ?>)"><?php echo utf8_encode($value['Titulo']); ?></a>&nbsp;-&nbsp;<small><?php echo $value['Data']; ?></small><br>
+              <i class="icon-ok"></i>&nbsp;<a href="#" onClick="verAviso(<?php echo $value['CodigoAviso'] ?>)"><?php echo utf8_encode($value['Titulo']); ?></a>&nbsp;-&nbsp;<small><?php echo $value['Data']; ?></small><br>
           <?php 
             }
           ?>
           <br>
-          <p><a class="btn" href="home.php?pag=avisos&arq=index.php">Mais avisos &raquo;</a></p>
+          <p><a class="btn btn-info" href="home.php?pag=avisos&arq=index.php">+ Avisos &raquo;</a></p>
           <?php
           } 
           ?>
@@ -90,7 +90,7 @@
 		//echo "<pre>";
 		//print_r($calendario);
 		foreach($calendario as $id => $nome){
-			echo '<i class="icon-circle-arrow-right"></i>&nbsp;<strong>'.utf8_encode($id).'</strong> <br>Data(s): ';
+			echo '<i class="icon-ok"></i>&nbsp;<strong>'.utf8_encode($id).'</strong> <br>Data(s): ';
 			foreach($nome as $chave => $data){
 				if($data != ''){
 					if($chave > 0){
@@ -103,7 +103,7 @@
 		}
 
 		echo "</pre>";
-		echo "<br><p><a class=\"btn\" href=\"home.php?pag=cronograma&arq=index.php\">Mais cronogramas &raquo;</a></p>";
+		echo "<br><p><a class=\"btn btn-info\" href=\"home.php?pag=cronograma&arq=index.php\">+ Cronogramas &raquo;</a></p>";
           } 
           ?>
         </div>
