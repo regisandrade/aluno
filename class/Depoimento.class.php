@@ -3,7 +3,8 @@ class Depoimento{
 
      public function incluir($pdo,$parametros){
           try {
-               $sql = "INSERT INTO depoimento (
+              if (!empty($parametros['depoimento'])) {
+                $sql = "INSERT INTO depoimento (
                               Aluno
                              ,Codg_Curso
                              ,Depoimento
@@ -15,24 +16,27 @@ class Depoimento{
                              ,:depoimento
                              ,:data
                              ,:status)";
-               
-               $rs = $pdo->prepare($sql);
-               $rs->execute(array(':aluno'=>$parametros['idNumero'],
+
+                $rs = $pdo->prepare($sql);
+                $rs->execute(array(':aluno'=>$parametros['idNumero'],
                                   ':codgCurso'=>$parametros['codgCurso'],
                                   ':depoimento'=>$parametros['depoimento'],
                                   ':data'=>date('Y-m-d'),
                                   ':status'=>0));
 
-               //var_dump($rs, $rs->errorInfo());
+                //var_dump($rs, $rs->errorInfo());
 
-               if(!$rs){
+                if(!$rs){
                     $resposta['mensagem'] = "Erro ao tentar realizar o Depoimento.";
                     $resposta['sucesso']  = false;
-               }else{
-                    $resposta['mensagem'] = "Depoimento realizado com sucesso.";
+                }else{
+                    $resposta['mensagem'] = "Depoimento gravado com sucesso.";
                     $resposta['sucesso']  = true;
-               }
-
+                }
+              } else {
+                $resposta['mensagem'] = "O Depoimento não pode estar vazio.";
+                $resposta['sucesso']  = false;
+              }
           } catch (Exception $e) {
                $resposta['mensagem'] = $e;
                $resposta['sucesso']  = false;

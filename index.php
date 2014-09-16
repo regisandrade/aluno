@@ -52,7 +52,7 @@
       <hr>
 
       <footer>
-        <p>&copy; IPECON 2013</p>
+        <p>&copy; IPECON 2014</p>
       </footer>
 
     </div> <!-- /container -->

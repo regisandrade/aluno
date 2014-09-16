@@ -1,9 +1,6 @@
 function alertaDialog(resposta,param){
-    if(resposta && resposta.sucesso == true){
-        $(param.idDiv).html('<p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>'+resposta.mensagem+'</p>');
-    }else{
-        $(param.idDiv).html('<p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>'+resposta.mensagem+'</p>');
-    }
+    $(param.idDiv).html('<p>'+resposta.mensagem+'</p>');
+
     // Dialog
     $(param.idDiv).dialog({
         resizable: false,
@@ -60,6 +57,7 @@ $(document).ready(function() {
         $('body').append('<div id="dialog-message"></div>');
 
         var form = $('form[name=formAlterarSenha]');
+        alert(form.attr('action'));
         $.ajax({
             url : form.attr('action'),
             data : form.serialize(),

@@ -10,9 +10,11 @@ $senhaDAO = new Senha();
 
 switch ($_REQUEST['ACAO']) {
 	case 'ALTERAR_SENHA':
-		$parametros['novaSenha'] = $_REQUEST['aluno'];
-		$parametros['login']     = $_REQUEST['curso'];
-		$senhaDAO->alterar($db,$parametros);
+		$parametros['senha_antiga']  = $_REQUEST['senha_antiga'];
+		$parametros['novaSenha']     = $_REQUEST['nova_senha'];
+		$parametros['repetir_senha'] = $_REQUEST['repetir_senha'];
+		$parametros['idNumero']      = $_REQUEST['idNumero'];
+		$senhaDAO->alterar($bd,$parametros);
 		unset($parametros);
 		break;
 	

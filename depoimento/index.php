@@ -47,7 +47,7 @@ if(isset($verificarDepoimento['sucesso'])){
       <div class="control-group">
         <label class="control-label" for="mensagem">Depoimento:&nbsp;</label>
         <div class="controls">
-          <textarea name="depoimento" id="depoimento" placeholder="Escrever depoimento" rows="5"></textarea>
+          <textarea name="depoimento" id="depoimento" placeholder="Escrever depoimento" rows="5" required></textarea>
           <br/>
           <br/>
           <button id="gravarDepoimento" class="btn btn-large btn-primary <?php echo $desabilitarBotao ?>" type="button">Gravar Depoimento</button>

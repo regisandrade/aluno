@@ -2,7 +2,7 @@
 <p>
 	<form name="formAlterarSenha" class="form-horizontal" method="post" action="alterarSenha/gravar.php">
 		<input name="ACAO" type="hidden" value="ALTERAR_SENHA">
-		<input name="login" type="hidden" value="<?php echo $_SESSION['login']; ?>">		
+		<input name="idNumero" type="hidden" value="<?php echo $_SESSION['idNumero']; ?>">		
 
 		<div class="control-group">
 			<label class="control-label" for="nome">Senha antiga:</label>
@@ -24,7 +24,7 @@
 				<input name="repetir_senha" type="password" id="repetir_senha" class="input-medium" required>
 				<br/>
         		<br/>
-        		<button id="alertaAlteraSenha" class="btn btn-large btn-primary" type="button">Alterar Senha</button>
+        		<button id="alterarSenhaAluno" class="btn btn-large btn-primary" type="button">Alterar Senha</button>
 			</div>
 		</div>
   

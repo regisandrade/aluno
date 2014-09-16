@@ -1,11 +1,14 @@
       <?php
       session_start();
-      //require_once "../lib/util.class.php";
+      echo "<pre>";
+      print_r($_SESSION);
+      echo "</pre>";
+      //require_once "lib/util.class.php";
       ?>
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1><?php echo $_SESSION['nomeAluno']; ?></h1>
-        <p>Um local que o IPECON oferece aos alunos para interagir com os seus alunos.</p>
+        <p class="text-info"><small>Curso: <?php echo $_SESSION['nomeCurso'].' - '.$_SESSION['turma']; ?></small></p>
       </div>
 
       <!-- Example row of columns -->

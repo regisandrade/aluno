@@ -23,12 +23,10 @@ foreach($menu->menuIpeconAreaAluno() as $linha){
         }
         echo "\t\t\t</ul>\n";
       }
-
     }
-
     echo "\t\t</li>\n";
   }
-
 }
+echo "\t\t<li class=\"active\"><a href=\"#\">".$_SESSION['turma']."-".$_SESSION['nomeCurso']."</a></li>\n";
 echo "\t</ul>\n
 </div>";
